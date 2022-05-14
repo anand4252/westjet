@@ -25,8 +25,8 @@ import java.io.OutputStream;
 @RestController
 @RequestMapping("/profilemanagement")
 public class ProfileManagementController {
-    private static final String XML_FILENAME = "src/main/resources/xml/input/staff-simple.xml";
-    private static final String XSLT_FILENAME = "src/main/resources/xslt/staff-xml-html.xslt";
+    private static final String XML_FILENAME = "src/main/resources/xml/input/employees-input.xml";
+    private static final String XSLT_FILENAME = "src/main/resources/xslt/xerris-transformer.xslt";
 
     @GetMapping
     public String start() {
@@ -38,8 +38,8 @@ public class ProfileManagementController {
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(is);
 
-            // transform xml to html via a xslt file
-            try (FileOutputStream output = new FileOutputStream("src/main/resources/xml/output/staff.html")) {
+            // transform xml to xml via a xslt file
+            try (FileOutputStream output = new FileOutputStream("src/main/resources/xml/output/xerris.xml")) {
                 transform(doc, output);
             }
 
