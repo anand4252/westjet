@@ -1,0 +1,7 @@
+nodes:
+  - inputPath: src/main/resources/xml/input/employees-input.xml
+    outputPath: src/main/resources/xml/output/xerris.xml
+    xsltPath: src/main/resources/xslt/xerris-transformer.xslt
+  - inputPath: src/main/resources/xml/output/xerris.xml
+    outputPath: src/main/resources/xml/output/xerris-location.xml
+    xsltPath: src/main/resources/xslt/xerris-location-transformer.xslt
