@@ -25,23 +25,35 @@ import java.io.OutputStream;
 @RestController
 @RequestMapping("/profilemanagement")
 public class ProfileManagementController {
-    private static final String XML_FILENAME = "src/main/resources/xml/input/employees-input.xml";
-    private static final String XSLT_FILENAME = "src/main/resources/xslt/xerris-transformer.xslt";
+    private static final String EMPLOYEES_INPUT_XML = "src/main/resources/xml/input/employees-input.xml";
+    private static final String XERRIS_INTERMEDIATE_XML = "src/main/resources/xml/intermediate/xerris.xml";
+    private static final String XERRIS_LOCATION_OUTPUT_XML = "src/main/resources/xml/output/xerris-location.xml";
+    private static final String XERRIS_TRANSFORMER = "src/main/resources/xslt/xerris-transformer.xslt";
+    private static final String XERRIS_LOCATION_TRANSFORMER = "src/main/resources/xslt/xerris-location-transformer.xslt";
 
     @GetMapping
     public String start() {
         System.out.println("Process started!");
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
-        try (InputStream is = new FileInputStream(XML_FILENAME)) {
-
+        try (InputStream employeesInputStream = new FileInputStream(EMPLOYEES_INPUT_XML);
+             FileOutputStream output = new FileOutputStream(XERRIS_INTERMEDIATE_XML)) {
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(is);
+            Document doc = db.parse(employeesInputStream);
 
-            // transform xml to xml via a xslt file
-            try (FileOutputStream output = new FileOutputStream("src/main/resources/xml/output/xerris.xml")) {
-                transform(doc, output);
-            }
+            transform(doc, output, XERRIS_TRANSFORMER);
+
+        } catch (IOException | ParserConfigurationException |
+                 SAXException | TransformerException e) {
+            e.printStackTrace();
+        }
+
+        try (InputStream employeesInputStream = new FileInputStream(XERRIS_INTERMEDIATE_XML);
+             FileOutputStream output = new FileOutputStream(XERRIS_LOCATION_OUTPUT_XML)) {
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(employeesInputStream);
+
+            transform(doc, output, XERRIS_LOCATION_TRANSFORMER);
 
         } catch (IOException | ParserConfigurationException |
                  SAXException | TransformerException e) {
@@ -52,16 +64,14 @@ public class ProfileManagementController {
     }
 
 
-    private static void transform(Document doc, OutputStream output)
-            throws TransformerException {
+    private static void transform(Document doc, OutputStream output, String xerrisTransformerPath) throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
         // add XSLT in Transformer
-        Transformer transformer = transformerFactory.newTransformer(
-                new StreamSource(new File(XSLT_FILENAME)));
+        Transformer xerrisTransformer = transformerFactory.newTransformer(
+                new StreamSource(new File(xerrisTransformerPath)));
 
-        transformer.transform(new DOMSource(doc), new StreamResult(output));
-
+        xerrisTransformer.transform(new DOMSource(doc), new StreamResult(output));
     }
 }
