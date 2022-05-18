@@ -1,18 +1,21 @@
 package com.westjet.profilemanagement.model;
 
+import com.westjet.profilemanagement.enums.NodeType;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import java.util.Map;
 
 
 @Data
 public class Node {
-    @NotBlank
-    private String inputPath;
+
+    public static final String XSLT_PATH = "xsltPath";
 
     @NotBlank
-    private String outputPath;
+    private NodeType type;
 
-    @NotBlank
-    private String xsltPath;
+    @NotEmpty
+    private Map<String, String> properties;
 }
