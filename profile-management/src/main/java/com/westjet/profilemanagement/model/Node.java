@@ -11,8 +11,6 @@ import java.util.Map;
 @Data
 public class Node {
 
-    public static final String XSLT_PATH = "xsltPath";
-
     @NotBlank
     private NodeType type;
 
