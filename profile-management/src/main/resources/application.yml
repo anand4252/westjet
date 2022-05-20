@@ -9,3 +9,6 @@ nodes:
     properties:
       xsltPath: src/main/resources/xslt/xerris-location-transformer.xslt
       another: bbbb
+  - type: XPATH
+    properties:
+      xpathExpression: xerris/location/vancouver/name
