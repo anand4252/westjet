@@ -1,10 +1,12 @@
 package com.westjet.profilemanagement.controller;
 
-import com.westjet.profilemanagement.config.TransformerConfig;
-import com.westjet.profilemanagement.exception.InvalidInputXmlException;
-import com.westjet.profilemanagement.helper.CoreHelper;
-import com.westjet.profilemanagement.model.Node;
-import com.westjet.profilemanagement.service.CoreService;
+import com.westjet.core.CoreApplication;
+import com.westjet.core.exception.InvalidInputXmlException;
+import com.westjet.core.model.Node;
+import com.westjet.core.config.TransformerConfig;
+import com.westjet.core.helper.CoreHelper;
+import com.westjet.core.model.TransferDetails;
+import com.westjet.core.service.CoreService;
 import com.westjet.profilemanagement.service.CoreServiceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,18 +32,22 @@ public class ProfileManagementController {
     private final CoreHelper coreHelper;
     private final CoreServiceFactory coreServiceFactory;
 
+    private final CoreApplication coreApplication;
+
     @GetMapping
     public String start() {
+        System.out.println("111111111:: " + coreApplication.generateRandom());
         long startTime = System.currentTimeMillis();
         System.out.println("Process started!");
         try {
             String inputXml = coreHelper.getInputXml(transformerConfig.getInputXmlPath());
-
+            TransferDetails transferDetails = new TransferDetails(inputXml, List.of());
             final List<Node> nodes = transformerConfig.getNodes();
             for (Node node : nodes) {
                 final CoreService coreService = coreServiceFactory.getCoreService(node.getType());
-                inputXml = coreService.perform(inputXml, node.getProperties(), List.of());
-                log.info("~~~~result:: " + inputXml);
+
+                transferDetails = coreService.perform(transferDetails, node.getProperties());
+                log.info("~~~~result:: " + transferDetails);
             }
 
         } catch (InvalidInputXmlException e) {

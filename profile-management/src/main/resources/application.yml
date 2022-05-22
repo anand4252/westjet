@@ -1,13 +1,13 @@
-inputXmlPath: src/main/resources/xml/input/employees-input.xml
+inputXmlPath: profile-management/src/main/resources/xml/input/employees-input.xml
 
 nodes:
   - type: XSLT
     properties:
-      xsltPath: src/main/resources/xslt/xerris-transformer.xslt
+      xsltPath: profile-management/src/main/resources/xslt/xerris-transformer.xslt
       another: aaa
   - type: XSLT
     properties:
-      xsltPath: src/main/resources/xslt/xerris-location-transformer.xslt
+      xsltPath: profile-management/src/main/resources/xslt/xerris-location-transformer.xslt
       another: bbbb
   - type: XPATH
     properties:

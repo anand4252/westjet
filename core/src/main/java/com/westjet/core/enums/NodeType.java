@@ -1,4 +1,4 @@
-package com.westjet.profilemanagement.enums;
+package com.westjet.core.enums;
 
 
 public enum NodeType {

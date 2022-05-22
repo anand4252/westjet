@@ -1,6 +1,6 @@
-package com.westjet.profilemanagement.model;
+package com.westjet.core.model;
 
-import com.westjet.profilemanagement.enums.NodeType;
+import com.westjet.core.enums.NodeType;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

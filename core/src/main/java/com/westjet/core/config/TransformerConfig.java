@@ -1,6 +1,6 @@
-package com.westjet.profilemanagement.config;
+package com.westjet.core.config;
 
-import com.westjet.profilemanagement.model.Node;
+import com.westjet.core.model.Node;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;

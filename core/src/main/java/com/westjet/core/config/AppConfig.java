@@ -1,4 +1,4 @@
-package com.westjet.profilemanagement.config;
+package com.westjet.core.config;
 
 
 import org.springframework.context.annotation.Bean;

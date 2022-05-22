@@ -1,4 +1,4 @@
-package com.westjet.profilemanagement.exception;
+package com.westjet.core.exception;
 
 public class InvalidInputXmlException extends Exception {
 
