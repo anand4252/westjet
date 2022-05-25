@@ -2,10 +2,8 @@ package com.westjet.profilemanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@ComponentScan("com.westjet")
+@SpringBootApplication(scanBasePackages = {"com.westjet.core", "com.westjet.profilemanagement"})
 public class ProfileManagementApplication {
 
 	public static void main(String[] args) {

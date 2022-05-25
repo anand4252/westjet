@@ -1,13 +1,12 @@
 package com.westjet.profilemanagement.controller;
 
-import com.westjet.core.CoreApplication;
-import com.westjet.core.exception.InvalidInputXmlException;
-import com.westjet.core.model.Node;
 import com.westjet.core.config.TransformerConfig;
+import com.westjet.core.exception.InvalidInputXmlException;
 import com.westjet.core.helper.CoreHelper;
+import com.westjet.core.model.Node;
 import com.westjet.core.model.TransferDetails;
 import com.westjet.core.service.CoreService;
-import com.westjet.profilemanagement.service.CoreServiceFactory;
+import com.westjet.core.service.CoreServiceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +31,8 @@ public class ProfileManagementController {
     private final CoreHelper coreHelper;
     private final CoreServiceFactory coreServiceFactory;
 
-    private final CoreApplication coreApplication;
-
     @GetMapping
     public String start() {
-        System.out.println("111111111:: " + coreApplication.generateRandom());
         long startTime = System.currentTimeMillis();
         System.out.println("Process started!");
         try {

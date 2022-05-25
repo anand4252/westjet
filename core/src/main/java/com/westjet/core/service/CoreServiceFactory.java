@@ -1,10 +1,9 @@
-package com.westjet.profilemanagement.service;
+package com.westjet.core.service;
 
 import com.westjet.core.enums.NodeType;
 import com.westjet.core.helper.CoreHelper;
-import com.westjet.core.service.CoreService;
-import com.westjet.profilemanagement.service.impl.XPathServiceImpl;
-import com.westjet.profilemanagement.service.impl.XsltServiceImpl;
+import com.westjet.core.service.impl.XPathServiceImpl;
+import com.westjet.core.service.impl.XsltServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

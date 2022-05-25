@@ -1,4 +1,4 @@
-package com.westjet.profilemanagement.service.impl;
+package com.westjet.core.service.impl;
 
 import com.westjet.core.helper.CoreHelper;
 import com.westjet.core.model.TransferDetails;
