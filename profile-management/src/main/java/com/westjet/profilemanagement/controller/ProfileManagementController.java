@@ -9,7 +9,11 @@ import com.westjet.core.service.CoreService;
 import com.westjet.core.service.CoreServiceFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.xml.sax.SAXException;
@@ -56,6 +60,21 @@ public class ProfileManagementController {
 
         final long timeTaken = System.currentTimeMillis() - startTime;
         return "Process Completed in ms: " + timeTaken;
+    }
+
+    @PostMapping("/6.16")
+    public ResponseEntity<String> callSOAP616(@RequestBody String inputXml){
+        log.info("From endpoint '6.16'. Received xml: {}", inputXml);
+        log.info("Further processing to be done");
+
+        return new ResponseEntity<>("response received", HttpStatus.OK);
+    }
+    @PostMapping
+    public ResponseEntity<String> callSOAP(@RequestBody String inputXml){
+        log.info("From endpoint '/'. Received xml: {}", inputXml);
+        log.info("Further processing to be done");
+
+        return new ResponseEntity<>("response received", HttpStatus.OK);
     }
 
 }
