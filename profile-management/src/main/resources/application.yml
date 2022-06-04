@@ -1,3 +1,6 @@
+server:
+  port: 666
+
 inputXmlPath: profile-management/src/main/resources/xml/input/employees-input.xml
 
 nodes:

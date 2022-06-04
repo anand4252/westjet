@@ -1,5 +1,6 @@
 package com.westjet.profilemanagement.controller;
 
+import com.example.consumingwebservice.wsdl.GetCountryResponse;
 import com.westjet.core.config.TransformerConfig;
 import com.westjet.core.exception.InvalidInputXmlException;
 import com.westjet.core.helper.CoreHelper;
@@ -7,6 +8,7 @@ import com.westjet.core.model.Node;
 import com.westjet.core.model.TransferDetails;
 import com.westjet.core.service.CoreService;
 import com.westjet.core.service.CoreServiceFactory;
+import com.westjet.profilemanagement.temp.CountryClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,10 +33,15 @@ public class ProfileManagementController {
     private final CoreHelper coreHelper;
     private final CoreServiceFactory coreServiceFactory;
 
+    private final CountryClient countryClient;
+
     @GetMapping
     public String start() {
         long startTime = System.currentTimeMillis();
         System.out.println("Process started!");
+        final GetCountryResponse response = countryClient.getCountry("Poland");
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " + response.getCountry().getCurrency());
+
         try {
             String inputXml = coreHelper.getInputXml(transformerConfig.getInputXmlPath());
             TransferDetails transferDetails = new TransferDetails(inputXml, List.of());
