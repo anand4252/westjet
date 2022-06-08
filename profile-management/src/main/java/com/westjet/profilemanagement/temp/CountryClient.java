@@ -6,25 +6,32 @@ import com.example.consumingwebservice.wsdl.GetCountryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-import org.springframework.ws.soap.client.core.SoapActionCallback;
+
+import javax.xml.bind.JAXB;
+import java.io.StringWriter;
 
 public class CountryClient extends WebServiceGatewaySupport {
 
-	private static final Logger log = LoggerFactory.getLogger(CountryClient.class);
+    private static final Logger log = LoggerFactory.getLogger(CountryClient.class);
 
-	public GetCountryResponse getCountry(String country) {
+    public GetCountryResponse getCountry(String country) {
 
-		GetCountryRequest request = new GetCountryRequest();
-		request.setName(country);
+        GetCountryRequest request = new GetCountryRequest();
+        request.setName(country);
 
-		log.info("Requesting location for " + country);
+        StringWriter sw = new StringWriter();
 
-		GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate()
-				.marshalSendAndReceive("http://localhost:8080/ws/countries", request,
-						new SoapActionCallback(
-								"http://spring.io/guides/gs-producing-web-service/GetCountryRequest"));
+        JAXB.marshal(request, sw);
+        String xmlString = sw.toString();
 
-		return response;
-	}
+        System.out.println("xmlString::: " + xmlString);
+
+        log.info("Requesting location for " + country);
+
+        GetCountryResponse response = (GetCountryResponse) getWebServiceTemplate()
+                .marshalSendAndReceive("http://localhost:8080/ws/countries", request);
+
+        return response;
+    }
 
 }
