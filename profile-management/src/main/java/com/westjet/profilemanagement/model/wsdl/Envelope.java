@@ -46,12 +46,11 @@ import org.w3c.dom.Element;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(namespace = "http://schemas.xmlsoap.org/soap/envelope/", propOrder = {
+@XmlType(name = "Envelope", namespace = "http://schemas.xmlsoap.org/soap/envelope/", propOrder = {
     "header",
     "body",
     "any"
 })
-@XmlRootElement(name = "Envelope", namespace = "http://schemas.xmlsoap.org/soap/envelope/" )
 public class Envelope {
 
     @XmlElement(name = "Header")

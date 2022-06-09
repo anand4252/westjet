@@ -2,7 +2,8 @@
 package com.westjet.profilemanagement.temp;
 
 import com.westjet.profilemanagement.SessionClient;
-import com.westjet.profilemanagement.builder.SessionCreateBuilder;
+import com.westjet.profilemanagement.builder.MessageHeaderBuilder;
+import com.westjet.profilemanagement.builder.SecurityBuilder;
 import com.westjet.profilemanagement.model.wsdl.ObjectFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,8 +37,8 @@ public class CountryConfiguration {
     }
 
     @Bean
-    public SessionClient sessionClient(Jaxb2Marshaller marshaller, SessionCreateBuilder sessionCreateService) {
-        SessionClient client = new SessionClient(sessionCreateService);
+    public SessionClient sessionClient(Jaxb2Marshaller marshaller, MessageHeaderBuilder messageHeaderBuilder, SecurityBuilder securityBuilder) {
+        SessionClient client = new SessionClient(messageHeaderBuilder, securityBuilder);
         client.setDefaultUri("https://sws-crt-as.cert.havail.sabre.com/");
         client.setMarshaller(marshaller);
         client.setUnmarshaller(marshaller);
