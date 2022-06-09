@@ -6,6 +6,7 @@ import com.westjet.core.config.TransformerConfig;
 import com.westjet.core.helper.CoreHelper;
 import com.westjet.core.service.CoreServiceFactory;
 import com.westjet.profilemanagement.SessionClient;
+import com.westjet.profilemanagement.model.SoapResponse;
 import com.westjet.profilemanagement.model.wsdl.Body;
 import com.westjet.profilemanagement.model.wsdl.Envelope;
 import com.westjet.profilemanagement.model.wsdl.Header;
@@ -45,12 +46,15 @@ public class ProfileManagementController {
 //        final GetCountryResponse response = countryClient.getCountry("Poland");
 //        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ " + response.getCountry().getCurrency());
 
-        final SessionCreateRS sessionCreateRS = sessionClient.createSession();
+        final SoapResponse soapResponse = sessionClient.createSession();
+        final SessionCreateRS sessionCreateRS = (SessionCreateRS) soapResponse.getBody();
 
         ObjectMapper objectMapper = new ObjectMapper();
         final String value = objectMapper.writeValueAsString(sessionCreateRS);
         System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ");
         System.out.println(value);
+        final Security security = (Security) soapResponse.getHeader().get("Security");
+        System.out.println(security.getBinarySecurityToken());
 
 
 //
