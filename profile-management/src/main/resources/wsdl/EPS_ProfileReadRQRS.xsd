@@ -1,0 +1,4 @@
+<schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:tns="http://www.sabre.com/eps/schemas" xmlns="http://www.w3.org/2001/XMLSchema">
+   <include schemaLocation="Sabre_OTA_ProfileReadRQ.xsd"/>
+   <include schemaLocation="Sabre_OTA_ProfileReadRS.xsd"/>
+</schema>

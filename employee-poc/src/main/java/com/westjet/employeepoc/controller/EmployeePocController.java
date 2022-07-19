@@ -1,7 +1,5 @@
-package com.westjet.profilemanagement.controller;
+package com.westjet.employeepoc.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.westjet.core.config.TransformerConfig;
 import com.westjet.core.exception.InvalidInputXmlException;
 import com.westjet.core.helper.CoreHelper;
@@ -9,13 +7,8 @@ import com.westjet.core.model.Node;
 import com.westjet.core.model.TransferDetails;
 import com.westjet.core.service.CoreService;
 import com.westjet.core.service.CoreServiceFactory;
-import com.westjet.profilemanagement.SessionClient;
-import com.westjet.profilemanagement.model.SoapResponse;
-import com.westjet.profilemanagement.model.wsdl.Security;
-import com.westjet.profilemanagement.model.wsdl.SessionCreateRS;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,30 +22,19 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/profilemanagement")
+@RequestMapping("/employeepoc")
 @RequiredArgsConstructor
 @Slf4j
-public class ProfileManagementController {
+public class EmployeePocController {
 
     private final TransformerConfig transformerConfig;
     private final CoreHelper coreHelper;
     private final CoreServiceFactory coreServiceFactory;
-    private final SessionClient sessionClient;
 
     @GetMapping
-    public String start() throws JsonProcessingException {
+    public String start() {
         long startTime = System.currentTimeMillis();
-
-        final SoapResponse soapResponse = sessionClient.createSession();
-        final SessionCreateRS responseBody = (SessionCreateRS) soapResponse.getBody();
-
-        val objectMapper = new ObjectMapper();
-        log.info("Sabre Create Session body: {}", objectMapper.writeValueAsString(responseBody));
-        final Security security = (Security) soapResponse.getHeader().get("Security");
-
-        log.info("Sabre Session token: {}", security.getBinarySecurityToken());
-
-
+        System.out.println("Process started!");
         try {
             String inputXml = coreHelper.getInputXml(transformerConfig.getInputXmlPath());
             TransferDetails transferDetails = new TransferDetails(inputXml, List.of());
@@ -75,6 +57,5 @@ public class ProfileManagementController {
         final long timeTaken = System.currentTimeMillis() - startTime;
         return "Process Completed in ms: " + timeTaken;
     }
-
 
 }

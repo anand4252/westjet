@@ -1,0 +1,547 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Karol Hadala (HP/ Sabre)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maciej Kubicki (SABRE)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by Artur Wypor (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns="http://www.sabre.com/eps/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Extensions.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_TPA_Extensions.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Preferences.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="CorporateProfileType">
+      <xs:annotation>
+         <xs:documentation>Data for corporate profiles (all types of corporate)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CorporateInfo" type="CorporateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Corporation information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ContactName" type="ContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Contact Name data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Address data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Phone data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Email data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Corporation</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SSR" type="SSRType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Special service requets for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OSI" type="OSIType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFilters" type="AssociatedFiltersType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Filters Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Template Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFormats" type="AssociatedFormatsType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Formats associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="TravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessTravelerSetting" type="BusinessTravelerSettingType" minOccurs="0" maxOccurs="6">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Business Traveler Settings associated to a corporation</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** Sabre Added *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NumberOfAssocProfiles" type="NumberOfAssocProfilesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Number of profiles associated to and from this profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedValues" type="CustomDefinedValuesType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Customer Defined Values can store any name/value pairs that can represent any customer data. There are no restrictions on the content of Name or Value. Name element can be stored without Value.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CorporateInfoType">
+      <xs:sequence>
+         <xs:element name="TaxInfo" type="TaxInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Tax Information associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CompanyURL" type="StringLength1to255" use="optional"/>
+      <xs:attribute name="NumberOfEmployees" type="NumericStringLength1to10" use="optional"/>
+      <xs:attribute name="CorporationName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="CorporationTypeCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="CorporationIdentifier" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="NatureOfBusinessCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="CreditBankInd" type="YesNoType" use="optional"/>
+      <xs:attribute name="CharterNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="ContactNameType">
+      <xs:annotation>
+         <xs:documentation>Corporation contact name type data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="NamePrefix" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="GivenName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="MiddleName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="SurName" type="StringLength1to100" use="required"/>
+      <xs:attribute name="NameSuffix" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="PreferredFirstName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="PreferredLastName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorLocationCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Dictionary with service location code e.g. ZKK, QPC.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="ServiceTypeCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="DepartmentName" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="CompanyID" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="Comment" type="StringLength1to255" use="optional"/>
+      <xs:attribute name="Title" type="StringLength1to64" use="optional"/>
+      <xs:attribute name="CompanyName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="ContactTypeCode" type="StringLength1to2">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Dictionary with type of ContactName.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GenderCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates gender of contact person</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSCorporateInfoType">
+      <xs:attribute name="CorporationName" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="CorporationTypeCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="CorporationIdentifier" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="NatureOfBusinessCode" type="StringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="SearchRSCorporateProfileType">
+      <xs:annotation>
+         <xs:documentation>Data for corporate profiles (all types of corporate)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CorporateInfo" type="SearchRSCorporateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Corporation information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="SearchRSAddressType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Address data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="SearchRSTelephoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="SearchRSEmailType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="SearchRSAssociatedProfilesType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="SearchRSRemarkType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="SearchRSCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentity" type="SearchRSBusinessSystemIdentityInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0"/>
+         <xs:element name="TravelPolicy" type="SearchRSSabreTravelPolicy" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNRCorporateProfileType">
+      <xs:annotation>
+         <xs:documentation>Data for corporate profiles (all types of corporate)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CorporateInfo" type="CorporateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Corporation information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ContactName" type="ContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Contact Name data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Address data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Phone data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Email data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Corporation</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="ProfileToPNR_AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterCorporateProfileType">
+      <xs:annotation>
+         <xs:documentation>Data for corporate profiles (all types of corporate)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Address" type="FilterAddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Address data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="FilterTelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Phone data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="FilterEmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Email data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="FilterPaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="FilterRemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="FilterCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="FilterDiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="FilterTravelPolicyType" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemplateCorporateProfileType">
+      <xs:annotation>
+         <xs:documentation>Data for corporate profiles (all types of corporate)</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CorporateInfo" type="CorporateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Corporation information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ContactName" type="ContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Contact Name data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Address data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Phone data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation Email data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Corporation</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SSR" type="SSRType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Special service requets for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OSI" type="OSIType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Corporation BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="TravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessTravelerSetting" type="BusinessTravelerSettingType" minOccurs="0" maxOccurs="6">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Business Traveler Settings associated to a corporation</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

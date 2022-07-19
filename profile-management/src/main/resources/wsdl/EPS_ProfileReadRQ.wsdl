@@ -1,0 +1,46 @@
+<definitions targetNamespace="https://webservices.sabre.com/websvc" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="http://www.sabre.com/eps/schemas" xmlns:xsd2="http://www.sabre.com/eps/schemas" xmlns:xsd3="http://www.opentravel.org/OTA/2002/08" xmlns:tns="https://webservices.sabre.com/websvc" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader" xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext">
+   <types>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+         <xsd:import namespace="http://www.sabre.com/eps/schemas" schemaLocation="EPS_ProfileReadRQRS.xsd"/>
+         <xsd:import namespace="http://www.ebxml.org/namespaces/messageHeader" schemaLocation="msg-header-2_0.xsd"/>
+         <xsd:import namespace="http://schemas.xmlsoap.org/ws/2002/12/secext" schemaLocation="wsse.xsd"/>
+      </xsd:schema>
+   </types>
+   <message name="EPS_ProfileReadInput">
+      <part name="header" element="eb:MessageHeader"/>
+      <part name="header2" element="wsse:Security"/>
+      <part name="body" element="xsd1:Sabre_OTA_ProfileReadRQ"/>
+   </message>
+   <message name="EPS_ProfileReadOutput">
+      <part name="header" element="eb:MessageHeader"/>
+      <part name="header2" element="wsse:Security"/>
+      <part name="body" element="xsd2:Sabre_OTA_ProfileReadRS"/>
+   </message>
+   <portType name="EPS_ProfileReadPortType">
+      <operation name="EPS_ProfileReadRQ">
+         <input message="tns:EPS_ProfileReadInput"/>
+         <output message="tns:EPS_ProfileReadOutput"/>
+      </operation>
+   </portType>
+   <binding name="EPS_ProfileReadSoapBinding" type="tns:EPS_ProfileReadPortType">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="EPS_ProfileReadRQ">
+         <soap:operation soapAction="OTA"/>
+         <input>
+            <soap:header message="tns:EPS_ProfileReadInput" part="header" use="literal"/>
+            <soap:header message="tns:EPS_ProfileReadInput" part="header2" use="literal"/>
+            <soap:body parts="body" use="literal"/>
+         </input>
+         <output>
+            <soap:header message="tns:EPS_ProfileReadOutput" part="header" use="literal"/>
+            <soap:header message="tns:EPS_ProfileReadOutput" part="header2" use="literal"/>
+            <soap:body parts="body" use="literal"/>
+         </output>
+      </operation>
+   </binding>
+   <service name="EPS_ProfileReadService">
+      <port name="EPS_ProfileReadPortType" binding="tns:EPS_ProfileReadSoapBinding">
+         <soap:address location="https://webservices.sabre.com/websvc"/>
+      </port>
+   </service>
+</definitions>

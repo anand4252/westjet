@@ -1,0 +1,435 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Karol Hadala (HP/ Sabre)-->
+<!--edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Szymon Lubieniecki (EDS/SABRE ACCT)-->
+<!--edited with XMLSpy v2009 sp1. 2 (http://www.altova.com) by Alexey Volynskiy (SABRE)-->
+<!--edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by Tomasz Cejner (SABRE)-->
+<!--edited with XMLSpy v2010 rel. 2 (http://www.altova.com) by Tomasz Cejner (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Ramesh Pitani (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns="http://www.sabre.com/eps/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:p3="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Preferences.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_TPA_Extensions.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm. It contains Sabre modifications for EPS project. Added elements are described as *SABRE ADDED*</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="TravelerProfileType">
+      <xs:sequence>
+         <xs:element name="Customer" type="CustomerType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+            <xs:unique name="loungePrefUniqueness">
+               <xs:selector xpath="./p3:LoungePref"/>
+               <xs:field xpath="@TripTypeCode"/>
+               <xs:field xpath="@VendorTypeCode"/>
+               <xs:field xpath="@VendorCode"/>
+            </xs:unique>
+         </xs:element>
+         <xs:element name="TPA_Extensions" type="TPA_Extensions_Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold additional profile elements</xs:documentation>
+            </xs:annotation>
+            <xs:unique name="TravelerCustomDefinedValuesNameUniqueness">
+               <xs:selector xpath="./p3:CustomDefinedValues"/>
+               <xs:field xpath="@Name"/>
+            </xs:unique>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CustomerType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Contains basic data on the customer's identity, location, relationships, finances, memberships, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PersonName" type="PersonNameType" minOccurs="0" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RelatedIndividual" type="RelatedIndividualType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Related Traveler Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Document" type="DocumentType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Document Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustLoyalty" type="CustLoyaltyType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Loyalty (Frequent Flyer, Prefered Vendor etc.) Information</xs:documentation>
+            </xs:annotation>
+            <xs:unique name="AssociatedVendorsUniqueness">
+               <xs:selector xpath="./p3:AssociatedVendors"/>
+               <xs:field xpath="@VendorCode"/>
+               <xs:field xpath="@VendorTypeCode"/>
+            </xs:unique>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** Sabre Added *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CountryOfResidence" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="BirthDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Indicates the date of birth as indicated in the document, in ISO 8601 prescribed format.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MaritalStatusCode" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Marital status of a person</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GenderCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="AgeRange" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Age Range of a person customizable by a client</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="RedressNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="KnownTravelerNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="ChildIndicator" type="YesNoType" use="optional"/>
+      <xs:attribute name="SeniorIndicator" type="YesNoType" use="optional"/>
+      <xs:attribute name="CitizenCountryCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="CurrencyCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Currency Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LapInfantIndicator" type="YesNoType" use="optional" default="N"/>
+      <xs:attribute name="IsSubjectToSecureFlightRule" type="YesNoType" use="optional" default="N"/>
+      <xs:attribute name="NationalityCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="ServiceSegmentationCode" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates VIP/CIP customer with an additional level of service</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="PersonName" type="PersonNameType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="SearchRSTelephoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="SearchRSEmailType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="SearchRSAddressType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="SearchRSAssociatedProfilesType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="SearchRSRemarkType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="SearchRSCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentity" type="SearchRSBusinessSystemIdentityInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustLoyalty" type="SearchRSCustLoyaltyType" minOccurs="0"/>
+         <xs:element name="Document" type="SearchRSDocumentType" minOccurs="0"/>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="BirthDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation>***SABRE ADDED*** Indicates the date of birth.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNRTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="Customer" type="CustomerType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TPA_Extensions" type="ProfileToPNR_TPA_Extensions_Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold additional profile elements</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="Customer" type="FilterCustomerType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TPA_Extensions" type="FilterTPA_Extensions_Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold additional profile elements</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterCustomerType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Contains basic data on the customer's identity, location, relationships, finances, memberships, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PersonName" type="FilterPersonNameType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="FilterTelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="FilterEmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="FilterAddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="FilterPaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Document" type="FilterDocumentType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Document Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustLoyalty" type="FilterCustLoyaltyType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Loyalty (Frequent Flyer, Prefered Vendor etc.) Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="RedressNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="KnownTravelerNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="LapInfantIndicator" type="YesNoType" use="optional" default="N"/>
+      <xs:attribute name="IsSubjectToSecureFlightRule" type="YesNoType" use="optional" default="N"/>
+   </xs:complexType>
+   <xs:complexType name="TemplateTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="Customer" type="TemplateCustomerType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="TemplatePrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TPA_Extensions" type="TemplateTPA_Extensions_Type" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold additional profile elements</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemplateCustomerType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Contains basic data on the customer's identity, location, relationships, finances, memberships, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PersonName" type="PersonNameType" minOccurs="0" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RelatedIndividual" type="RelatedIndividualType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Related Traveler Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Document" type="DocumentType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Document Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustLoyalty" type="CustLoyaltyType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Customer Loyalty (Frequent Flyer, Prefered Vendor etc.) Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** Sabre Added *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="BirthDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Indicates the date of birth as indicated in the document, in ISO 8601 prescribed format.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MaritalStatusCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Marital status of a person</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GenderCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="AgeRange" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Age Range of a person customizable by a client</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="RedressNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="KnownTravelerNumber" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="ChildIndicator" type="YesNoType" use="optional"/>
+      <xs:attribute name="SeniorIndicator" type="YesNoType" use="optional"/>
+      <xs:attribute name="LapInfantIndicator" type="YesNoType" use="optional" default="N"/>
+      <xs:attribute name="IsSubjectToSecureFlightRule" type="YesNoType" use="optional" default="N"/>
+   </xs:complexType>
+   <xs:complexType name="DupChkTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="PersonName" type="DupChkPersonNameType" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="DupChkTelephoneType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="DupChkEmailType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="DupChkAddressType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BirthDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">Indicates the date of birth as indicated in the document, in ISO 8601 prescribed format.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GenderCode" type="StringLength1to2" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DupChkRSTravelerProfileType">
+      <xs:sequence>
+         <xs:element name="PersonName" type="DupChkRSPersonNameType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Person Name Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="DupChkRSTelephoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="DupChkRSEmailType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="DupChkRSAddressType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BirthDate" type="xs:date" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">Indicates the date of birth as indicated in the document, in ISO 8601 prescribed format.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GenderCode" type="StringLength1to2" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

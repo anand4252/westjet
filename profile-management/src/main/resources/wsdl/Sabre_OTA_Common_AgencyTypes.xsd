@@ -1,0 +1,720 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Karol Hadala (HP/ Sabre)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maciej Kubicki (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_TPA_Extensions.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Preferences.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="TravelAgencyProfileType">
+      <xs:annotation>
+         <xs:documentation>Travel Agency Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AgencyContactName" type="AgencyContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AgencyInfo" type="AgencyInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">** SABRE ADDED *** Agency Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Agency</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Agency Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Agenct BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area)Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFilters" type="AssociatedFiltersType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area)Filters Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area)Template Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFormats" type="AssociatedFormatsType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Formats associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="TravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="QueueAssignments" type="QueueAssignmentsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Queue Assignments</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Commissions" type="CommissionsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Commissions</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** Sabre Added *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NumberOfAssocProfiles" type="NumberOfAssocProfilesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Number of profiles associated to and from this profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedValues" type="CustomDefinedValuesType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Customer Defined Values can store any name/value pairs that can represent any customer data. There are no restrictions on the content of Name or Value. Name element can be stored without Value.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AgencyContactNameType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Agency Contact NAme data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="NamePrefix" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Name Prefix</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GivenName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>First Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MiddleName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Middle Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Surname" type="StringLength1to100" use="required">
+         <xs:annotation>
+            <xs:documentation>Last Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="NameSuffix" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Name Suffix</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferredFirstName" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="PreferredLastName" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="AgencyInfoType">
+      <xs:annotation>
+         <xs:documentation>Agency Arranger Info Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TaxInfo" type="TaxInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Tax Information associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Fee" type="FeeInfoType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Any Fee Specific data stored in an Agency profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TravelAgencyName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Description of the Travel Agency</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TravelAgencyDescription" type="StringLength1to250" use="optional">
+         <xs:annotation>
+            <xs:documentation>Name of the Travel Agency</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TravelAgencyTypeCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional"/>
+      <xs:attribute name="AgencyBusinessUnitID" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">"Represents an internal identifier assigned by an AGENCY or sub AGENCY for its business unit. e.g. branch, cost center"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TravelAgencyIdentifier" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>"Represents the Travel industry standard, travel agency identification. This number can either stem from the ARc, IATA or TID. (Travel Agency Identifier). ARC is a ""nationally assigned number"", IATA is internationally assigned and TID is assigned if the other 2 are not the source of information for the agency identification. Usually the prefix distinguishes what type of source it comes from -- there is no requriement for a type code. Note: this is a ""restricted field"", and can never be ""updated"" in VTO.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="URL" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Uniform Resource Locator (URL) is the address of a file accessible on the Internet.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="URLLogoLocationText" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">"Description of the location where SVT is holding the AGENCY's logo associated with an agency. Example: www.DynamicTravel.com Note: SVT purposes"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgencyTradeName" type="StringLength1to64" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Agency Trade Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="BillableTravelArrangerCd" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">"The code may represent a Billable travel arranger code"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DefaultInactiveProfilesPurgeNoDays" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">"Represents the number of DAYS to be added to the transaction date, indicative of when a profile should be deleted/purged from the system. If this profile is inactive for a certain number of months: ** the Transaction Action Description will be changed to 'delete' ** the PROFILE PURGE DATE will be ""set"" to the TRANSACTION DATE + DEFAULT PURGE NUMBER OF DAYS attribute."</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EditPNRDesc" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">"Denotes whether edits should be applied at segment sell or end transaction. Value: Segment Sell End Transaction"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="WebLoginRestrictID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">This is an identifier used by SSW to restrict login to a particular website/storefront for a travel agency.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgyCreditCardAllowInd" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>This indicator is set to 'Y' when the Travel Agency's credit card is enabled as a form of payment. It is set to 'N' when the Travel Agency's credit card is disabled as a form of payment.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgyCreditLimitAllowedInd" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>This indicator is set to 'Y' when the Agency Credit Limit is enabled as a form of payment. It is set to 'N' when the Agency Credit Limit is disabled as a form of payment.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgyCreditLimit" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>This is an amount field used in association with Agency Credit Limit Allowed Indicator and the POS system will identify the currency used for that amount</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!--xs:attribute name="CustomParagraphTxt" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Text defined by the AGENCY/ sub-AGENCY/ agent to be included in correspondence to the customer on behalf of the agency/ agent/ sub-AGENCY. Example: Greetings!  The following information reflects your itinerary: Note:  SVT purposes
+</xs:documentation>
+			</xs:annotation>
+		</xs:attribute-->
+      <!--xs:attribute name="PseudoCityCd" type="xs:string" use="optional"/>
+		<xs:attribute name="PriceRetentionDesc" type="xs:string" use="optional"/>
+		<xs:attribute name="ProfilePurgeDate" type="xs:date" use="optional"/>
+		<xs:attribute name="PreReservedSeatReqInd" type="YesNoType" use="optional"/-->
+      <!--xs:attribute name="UpdatePNRPromptInd" type="YesNoType" use="optional"/>
+		<xs:attribute name="UpdateProfilePromptInd" type="YesNoType" use="optional"/-->
+      <!--xs:attribute name="UseCorpTvlPolicyInd" type="YesNoType" use="optional"/-->
+      <!--xs:attribute name="ParentClientControllerCd" type="xs:string" use="optional"/-->
+      <!--xs:attribute name="CustMailingArrangerName" type="xs:string" use="optional"/-->
+      <!--xs:attribute name="HdqArrangerProfileID" type="xs:string" use="optional"/>
+		<xs:attribute name="HdqDateTime" type="xs:dateTime" use="optional"/>
+		<xs:attribute name="HotAttribute" type="xs:string" use="optional"/>
+		<xs:attribute name="PreferredPrdCd" type="xs:string" use="optional"/ >
+		<xs:attribute name="SubArrangerID" type="xs:string" use="optional"/>
+		<xs:attribute name="TableName" type="xs:string" use="optional"/-->
+   </xs:complexType>
+   <xs:complexType name="FeeInfoType">
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="FeeTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Fee Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FeeAmount" type="xs:decimal" use="optional">
+         <xs:annotation>
+            <xs:documentation>Fee Amount</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FeeCurrencyCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Fee Currency Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSTravelAgencyProfileType">
+      <xs:annotation>
+         <xs:documentation>Search Travel Agency Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AgencyContactName" type="SearchRSAgencyContactNameType" minOccurs="0"/>
+         <xs:element name="AgencyInfo" type="SearchRSAgencyInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="SearchRSTelephoneType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="SearchRSEmailType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="SearchRSAddressType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="SearchRSAssociatedProfilesType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="SearchRSRemarkType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="SearchRSCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentity" type="SearchRSBusinessSystemIdentityInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustLoyalty" type="SearchRSCustLoyaltyType" minOccurs="0"/>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0"/>
+         <xs:element name="TravelPolicy" type="SearchRSSabreTravelPolicy" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="SearchRSAgencyContactNameType">
+      <xs:attribute name="NamePrefix" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Name Prefix</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GivenName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>First Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Surname" type="StringLength1to100" use="required">
+         <xs:annotation>
+            <xs:documentation>Last Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSAgencyInfoType">
+      <xs:annotation>
+         <xs:documentation>Agency Arranger Info Data</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TravelAgencyName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Description of the Travel Agency</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TravelAgencyDescription" type="StringLength1to250" use="optional">
+         <xs:annotation>
+            <xs:documentation>Name of the Travel Agency</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TravelAgencyTypeCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional"/>
+      <xs:attribute name="TravelAgencyIdentifier" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>"Represents the Travel industry standard, travel agency identification. This number can either stem from the ARc, IATA or TID. (Travel Agency Identifier). ARC is a ""nationally assigned number"", IATA is internationally assigned and TID is assigned if the other 2 are not the source of information for the agency identification. Usually the prefix distinguishes what type of source it comes from -- there is no requriement for a type code. Note: this is a ""restricted field"", and can never be ""updated"" in VTO.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNRTravelAgencyProfileType">
+      <xs:annotation>
+         <xs:documentation>Travel Agency Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AgencyContactName" type="AgencyContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AgencyInfo" type="AgencyInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">** SABRE ADDED *** Agency Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Agency</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Agency Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Agenct BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="ProfileToPNR_AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area)Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="QueueAssignments" type="QueueAssignmentsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Queue Assignments</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Commissions" type="CommissionsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Commissions</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterAgencyInfoType">
+      <xs:annotation>
+         <xs:documentation>Agency Arranger Info Data</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TravelAgencyName" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation>Description of the Travel Agency</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterTravelAgencyProfileType">
+      <xs:annotation>
+         <xs:documentation>Travel Agency Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AgencyInfo" type="FilterAgencyInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="FilterAddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="FilterTelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="FilterEmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">** SABRE ADDED *** Agency Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="FilterPaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="FilterRemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="FilterCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="FilterDiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="FilterTravelPolicyType" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemplateTravelAgencyProfileType">
+      <xs:annotation>
+         <xs:documentation>Travel Agency Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AgencyContactName" type="AgencyContactNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Contact Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AgencyInfo" type="AgencyInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Agency Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Agency Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">** SABRE ADDED *** Agency Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PaymentForm" type="PaymentFormType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED*** Payment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Emergency Contact Person Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GDS" type="GDSType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Information associated with an Agency</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Branding" type="BrandingType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Agency Branding Informaion</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Agenct BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrefCollections" type="PrefCollectionsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based*** Preferences of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="QueueAssignments" type="QueueAssignmentsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Queue Assignments</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Commissions" type="CommissionsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Commissions</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreCorporateTravelPolicy" type="SabreCorporateTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre Old Corporate Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="SabreTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre New Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** EmploymentInfo elements and attributes, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

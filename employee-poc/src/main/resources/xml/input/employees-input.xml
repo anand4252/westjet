@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<employees>
+    <employee id="1001">
+        <fname>Jonathan</fname>
+        <lname>Mills</lname>
+        <role>Business Analyst</role>
+        <location>vancouver</location>
+    </employee>
+    <employee id="1002">
+        <fname>Mark</fname>
+        <lname>Strother</lname>
+        <role>Architect</role>
+        <location>vancouver</location>
+    </employee>
+    <employee id="1003">
+        <fname>Shelby</fname>
+        <lname>Kenison</lname>
+        <role>Manager</role>
+        <location>florida</location>
+    </employee>
+    <employee id="1004">
+        <fname>Taras</fname>
+        <lname>Kistulinec</lname>
+        <role>Senior Lead</role>
+        <location>Toronto</location>
+    </employee>
+        <employee id="1005">
+        <fname>Jagadesh</fname>
+        <lname>Babu</lname>
+        <role>Developer</role>
+        <location>vancouver</location>
+    </employee>
+</employees>

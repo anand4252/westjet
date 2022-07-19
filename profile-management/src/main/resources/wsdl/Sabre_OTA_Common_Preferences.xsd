@@ -1,0 +1,1726 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Jacek Majchrzak (HP/ Sabre)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas" xmlns:p3="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="PrefCollectionsType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Needs of the traveler related to travel experiences.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AirlinePref" type="AirlinePrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Airline Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="HotelPref" type="HotelPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Hotel Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="VehicleRentalPref" type="VehicleRentalPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Vehicle Preference Information</xs:documentation>
+            </xs:annotation>
+            <xs:unique name="vehicelEquipmentCodeUniqueness">
+               <xs:selector xpath="./p3:VehicleEquipment"/>
+               <xs:field xpath="@EquipmentCode"/>
+            </xs:unique>
+         </xs:element>
+         <xs:element name="RailPref" type="RailPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Rail Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GroundTransportationPref" type="GroundTransportationPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Ground Transportation Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TPA_MarketingPreference" type="TPA_MarketingPreferenceType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Marketing Preference, additional elements and attributes to be included if required, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LoungePref" type="LoungePrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>***SABRE ADDED *** Lounge Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PreferredDrinkType">
+      <xs:attribute name="DrinkName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation>The name of a preferenced drink</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PreferredNewspaperType">
+      <xs:attribute name="NewspaperName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation>The name of the preferenced newspaper</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="LoungePrefType">
+      <xs:choice>
+         <xs:sequence>
+            <xs:element name="PreferredDrink" type="PreferredDrinkType" maxOccurs="10">
+               <xs:annotation>
+                  <xs:documentation>***SABRE ADDED*** Stores List of preferred drinks</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="PreferredNewspaper" type="PreferredNewspaperType" minOccurs="0" maxOccurs="10">
+               <xs:annotation>
+                  <xs:documentation>***SABRE ADDED*** Stores List of preferred newspapers</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:sequence>
+            <xs:element name="PreferredNewspaper" type="PreferredNewspaperType" maxOccurs="10">
+               <xs:annotation>
+                  <xs:documentation>***SABRE ADDED*** Stores List of preferred newspapers</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+      </xs:choice>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorTypeCode" type="StringLength1to8" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Represents a classification of Industry Service providers, like AL</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifier to indicate the owner of the lounge</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlinePrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifies a collection of preferences for airline travel.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AirportPref" type="AirportPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Identifies the preferred origination airport for travel (using IATA airport codes).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineSeatPref" type="AirlineSeatPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred seat characteristics. Refer to OTA Code List Seat Preference (STP) for codes. Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineCabinPref" type="AirlineCabinPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred Cabins</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineMealPref" type="AirlineMealPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred meal type (e.g., vegetarian, Kosher, low fat), Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineUpgradePref" type="AirlineUpgradePrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates Upgrade Preferecnes for Airlines</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAirlines" type="PreferredAirlinesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PartialAirlinePrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifies a collection of preferences for airline travel.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="AirportPref" type="AirportPrefType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Identifies the preferred origination airport for travel (using IATA airport codes).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineSeatPref" type="AirlineSeatPrefType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred seat characteristics. Refer to OTA Code List Seat Preference (STP) for codes.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineCabinPref" type="AirlineCabinPrefType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred Cabins</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineMealPref" type="AirlineMealPrefType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred meal type (e.g., vegetarian, Kosher, low fat)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AirlineUpgradePref" type="AirlineUpgradePrefType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates Upgrade Preferecnes for Airlines</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAirlines" type="PreferredAirlinesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Region type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="AirportInfoType">
+      <xs:attribute name="AirportCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code of the airport.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LocationTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirportPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Departure airport preferences, using IATA airport codes.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AirportInfo" type="AirportInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlineSeatInfoType">
+      <xs:attribute name="SeatNumber" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to provide the seat number.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SeatPreferenceCode" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlineSeatPrefType">
+      <xs:sequence>
+         <xs:element name="SeatInfo" type="AirlineSeatInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirCabinInfoType">
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CabinNameCode" type="StringLength1to4" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to provide the seat number.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlineCabinPrefType">
+      <xs:sequence>
+         <xs:element name="CabinInfo" type="AirCabinInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlineUpgradePrefType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirMealInfoType">
+      <xs:attribute name="MealTypeCode" type="StringLength1to4" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Type of meal required (e.g.,vegetarian, Kosher, low fat, etc.)</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MealServiceCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Meal Service Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AirlineMealPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Food and beverage preferences to be used with this collection.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MealInfo" type="AirMealInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PreferredAirlinesType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="HotelPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">These are the hotel preference elements used on an instance of a profile.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PreferredHotel" type="PreferredHotelType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Hotel Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PartialHotelPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">These are the hotel preference elements used on an instance of a profile.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="PreferredHotel" type="PreferredHotelType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+      <xs:attribute name="TripTypeCode" type="StringLength2">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Region type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PreferredHotelType">
+      <xs:sequence>
+         <xs:element name="HotelRate" type="HotelRateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Vehicle Rate Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="HotelName" type="StringLength1to60" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Hotel COde</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="HotelChainCode" type="StringLength1to60" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Hotel Chain Code. This Chain code represents the vendor codes for Brand or Management Groups of hotels.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="HotelVendorCode" type="StringLength1to60" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor Code represents general Hotel Vendor Codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="RoomTypeCode" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Room Type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GDSCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="HotelVicinityCode" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="HotelRateInfoType">
+      <xs:attribute name="MaxRoomRate" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Max Room Rate</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CurrencyCode" type="StringLength1to5" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Maximum Daily Rate</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!--xs:attribute name="MaxRateTypeCode" type="StringLength1to5" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Maximum Rate Type Code </xs:documentation>
+			</xs:annotation>
+		</xs:attribute-->
+   </xs:complexType>
+   <xs:complexType name="VehicleRentalPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Vehicle rental preferences can be specified for customers or companies to indicate their preferences for types of vehicles to be rented in specific travel situations. Companies may wish to specify certain class or types of cars that their employees are allowed to rent, or indicate special business needs for trucks for hauling goods, etc. Personal travelers may wish to indicate preferences for types of vehicles such as vans or SUVs for family vacations, or smaller, more sporty models when travelling alone. A customer may prefer to have a convertible or sun roof in a warm destination, but request a ski rack when vacationing in the wintertime. The VehicleProfileRentalPrefType complex type has elements for specific features on rental cars including vehicle type (major category such as car, truck, SUV) and vehicle class (more precise kind of vehicle), air conditioning, transmission, and special equipment. In addition, the specification captures preferences for vendors and loyalty programs, insurance coverage, forms of payment for rental cars, and other special requirements.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PreferredVehicleVendors" type="PreferredVehicleVendorsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="VehicleEquipment" type="VehicleEquipmentType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Vehicle Equipment Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PartialLoungePrefType">
+      <xs:sequence>
+         <xs:element name="PreferredDrink" type="PreferredDrinkType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation>***SABRE ADDED*** Stores List of preferred drinks</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredNewspaper" type="PreferredNewspaperType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation>***SABRE ADDED*** Stores List of preferred newspapers</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorTypeCode" type="StringLength1to8">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Represents a classification of Industry Service providers, like AS</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifier to indicate the owner of the lounge</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3">
+         <xs:annotation>
+            <xs:documentation>Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PartialVehicleRentalPrefType">
+      <xs:choice>
+         <xs:element name="PreferredVehicleVendors" type="PreferredVehicleVendorsType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregators" type="PreferredAggregatorType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***DEPRECATED*** The element will be removed in next schema release (replaced by correctly spelled PreferredAggregator)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+      <xs:attribute name="TripTypeCode" type="StringLength2">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Region type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PreferredVehicleVendorsType">
+      <xs:sequence>
+         <xs:element name="VehicleRate" type="VehicleRateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Vehicle Rate Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="VehicleType" type="VehicleTypeInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Vehicle Type Code Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VehicleTypeCode" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="VehicleRateInfoType">
+      <xs:attribute name="MaxRateAmount" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Maximum Daily Rate</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CurrencyCode" type="StringLength1to5" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Maximum Daily Rate</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!--xs:attribute name="MaxRateTypeCode" type="StringLength1to5" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">Vehicle Maximum Daily Rate </xs:documentation>
+			</xs:annotation>
+		</xs:attribute-->
+   </xs:complexType>
+   <xs:complexType name="VehicleTypeInfoType">
+      <xs:choice minOccurs="0">
+         <xs:element name="MatrixType" type="VehicleMatrixTypeInfoType" minOccurs="0"/>
+         <xs:element name="PseudoType" type="VehiclePseudoTypeInfoType" minOccurs="0"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="VehicleEquipmentType">
+      <xs:annotation>
+         <xs:documentation>Vehicle equipment preferred by traveler.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="EquipmentCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>Equipment Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3">
+         <xs:annotation>
+            <xs:documentation>Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3">
+         <xs:annotation>
+            <xs:documentation>Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="VehicleMatrixTypeInfoType">
+      <xs:attribute name="VehicleCategoryCode" type="StringLength1" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Category Code - M, N, E, H, C, D, I, J, S, R, F, G, P, U, L, W, O, X</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VehicleBodyTypeCode" type="StringLength1" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Body Type Code - B, C, D, W, V, L, S, T, F, J, X, P, Q, Z, E, M, R, H, Y, N, G, K</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VehicleFuelTypeCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Fuel Type Code - R, D, H, E, L, A, M, P, U, N, Q, I, C, S, B, F, Z, X</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VehicleTransmissionTypeCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Type Code - M, N, C, A, B, D</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="VehiclePseudoTypeInfoType">
+      <xs:attribute name="VehiclePseudoTypeCode" type="StringLength4" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vehicle Pseudo Type Code - ACAR, ACGO, ACNV, ACPG, ACPR, ACRS, ADSL, AEIG, AELC, AELT, AETH, AFWD, AGAS, AGRN, AHYB, AHYD, ALLB, ALLC, ALLD, ALMO, AMAN, AMCY, AMFP, AMNO, AMTO, AOFR, APET, APUP, AREC, ASEV, ASIX, ASPC, ASPT, ASPX, ASUV, ATRV, AUTO, AVAN, AWGN</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifies a collection of preferences for airline travel.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="RailStationPref" type="RailStationPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Identifies the preferred origination rail for travel (using IATA airport codes).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RailSeatPref" type="RailSeatPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred seat characteristics. Refer to OTA Code List Seat Preference (STP) for codes.Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RailCabinPref" type="RailCabinPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred Cabins</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RailMealPref" type="RailMealPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates preferred meal type (e.g., vegetarian, Kosher, low fat) Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RailUpgradePref" type="RailUpgradePrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Indicates Upgrade Preferecnes for Airlines</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredRailVendors" type="PreferredRailVendorsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="RailStationInfoType">
+      <xs:attribute name="RailStationCode" type="AlphaNumericStringLength1to8" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code of the Rail Station.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LocationTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ContextCode" type="StringLength1to200" default="IATA">
+         <xs:annotation>
+            <xs:documentation>Coding standard for LocationTypeCode *** DEPRECATED *** This attribute will become REQUIRED in the next major release.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailStationPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Rail preferences, using IATA airport codes.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="RailStationInfo" type="RailStationInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailSeatInfoType">
+      <xs:attribute name="SeatNumber" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to provide the seat number.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SeatPreferenceCode" type="StringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailSeatPrefType">
+      <xs:sequence>
+         <xs:element name="SeatInfo" type="RailSeatInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailCabinInfoType">
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CabinNameCode" type="StringLength1to4" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to provide the seat number.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailCabinPrefType">
+      <xs:sequence>
+         <xs:element name="CabinInfo" type="RailCabinInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailUpgradePrefType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailMealInfoType">
+      <xs:attribute name="MealTypeCode" type="StringLength1to4" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Type of meal required (e.g.,vegetarian, Kosher, low fat, etc.)</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MealServiceCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Meal Service Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RailMealPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Food and beverage preferences to be used with this collection.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MealInfo" type="RailMealInfoType" minOccurs="0"/>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Refer to OTA Code List Seat Preference (STP).</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PreferredRailVendorsType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="GroundTransportationPrefType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Ground Transportation information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PreferredGroundTransportationVendors" type="PreferredGroundTransportationVendorsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Vendors</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PreferredAggregator" type="PreferredAggregatorType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** Stores List of Preferred and excluded Aggregators</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PreferredGroundTransportationVendorsType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferLevelCode" type="StringLength1" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Used to indicate a level of preference for an associated item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a display.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TPA_MarketingPreferenceType">
+      <xs:sequence>
+         <xs:element name="NotificationPreference" type="NotificationPreferenceType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Notification Prefereces for a profile, Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Consent" type="ConsentType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Application Consents of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PsychographicCategory" type="PsychographicCategoryType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Stated Interests for a profile, Not applicable for Corporation and Agency Profile Types</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DeclaredTravelHistoryPreference" type="DeclaredTravelHistoryPreferenceType" minOccurs="0" maxOccurs="200"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DeclaredTravelHistoryPreferenceType">
+      <xs:attribute name="TripTypeCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="Value" type="NumericStringLength1to4"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="NotificationPreferenceType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">***SABRE ADDED*** This is notification preference element</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="LanguageID" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PreferenceStartTime" type="MilitaryTimeAsString" use="optional"/>
+      <xs:attribute name="PreferenceEndTime" type="MilitaryTimeAsString" use="optional"/>
+      <xs:attribute name="DaysPriorToStartNotification" type="Numeric0to365" use="optional"/>
+      <xs:attribute name="PreferredDeviceDeliveryCapabilityCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="ConsentType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">***SABRE ADDED*** These are Consent data element</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TypeCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>Refer to code in the control table</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Value" type="ConsentValueType" use="required">
+         <xs:annotation>
+            <xs:documentation>Refer to OTC code types</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AcceptedDateTime" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation>Date and Time when the Consent has been agreed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ApplicationCode" type="StringLength1to10" use="required"/>
+      <xs:attribute name="CampaignTypeCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation>Contains code for type of marketing campaign</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PsychographicDataType">
+      <xs:attribute name="ValueCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PsychographicCategoryType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">PsychographicCategoryType Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PsychographicData" type="PsychographicDataType" maxOccurs="500"/>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CategoryCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PreferredAggregatorType">
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AggregatorCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Aggregator Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Exclude" type="xs:boolean" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Flag this as a non preferred Aggregator</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Preferecne</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Code used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderPreferenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Order Preference number used to identify a location.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TemplatePrefCollectionsType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Needs of the traveler related to travel experiences.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="AirlinePref" type="AirlinePrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Airline Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="HotelPref" type="HotelPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Hotel Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="VehicleRentalPref" type="VehicleRentalPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Vehicle Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RailPref" type="RailPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Rail Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="GroundTransportationPref" type="GroundTransportationPrefType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED *** Ground Transportation Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TPA_MarketingPreference" type="TPA_MarketingPreferenceType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Marketing Preference, additional elements and attributes to be included if required, per Trading Partner Agreement (TPA)</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

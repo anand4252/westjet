@@ -1,0 +1,14 @@
+inputXmlPath: employee-poc/src/main/resources/xml/input/employees-input.xml
+
+nodes:
+  - type: XSLT
+    properties:
+      xsltPath: employee-poc/src/main/resources/xslt/xerris-transformer.xslt
+      another: aaa
+  - type: XSLT
+    properties:
+      xsltPath: employee-poc/src/main/resources/xslt/xerris-location-transformer.xslt
+      another: bbbb
+  - type: XPATH
+    properties:
+      xpathExpression: xerris/location/vancouver/name

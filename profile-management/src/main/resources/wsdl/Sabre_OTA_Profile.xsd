@@ -1,0 +1,1607 @@
+<!--edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by Karol Hadala (HP/ Sabre)-->
+<!--edited with XMLSpy v2013 (x64) (http://www.altova.com) by Witold Hajderek (HP/ Sabre)-->
+<!--edited with XMLSpy v2011 rel. 3 sp1 (http://www.altova.com) by Karol Hadala (HP/SABRE)-->
+<!--edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Maciej Kolodziej (EDS/SABRE ACCT)-->
+<!--edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Szymon Lubieniecki (EDS/SABRE ACCT)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Ramesh Pitani (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas" xmlns:p3="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Preferences.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_TPA_Extensions.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Profile_TPA_Identity.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_AgencyTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_CorporationTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_AgentTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_TravelerTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_OperationalProfileTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_GroupProfileTypes.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm. It contains Sabre modifications for EPS project. Added elements are described as *SABRE ADDED*</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="ProfileInfoType">
+      <xs:choice>
+         <xs:element name="Profile" type="ProfileType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** OTA Based *** Complete Update of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PartialUpdates" type="PartialUpdatesType">
+            <xs:annotation>
+               <xs:documentation>*** OTA Based *** Partial Update of Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="DupChkRSProfileInfoType">
+      <xs:sequence>
+         <xs:element name="Profile" type="DupChkRSProfileType" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** OTA Based *** Complete Update of a Profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PartialUpdatesType">
+      <xs:annotation>
+         <xs:documentation>subtree to support partial updates</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="TPAIdentityType">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Identity of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Delete" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** partial Delete of a profile</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DeleteSubtree" type="DeleteSubtreeType" minOccurs="0" maxOccurs="200">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** partial Delete Sub Tree of a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="DeleteElement" type="DeleteElementType" minOccurs="0" maxOccurs="2">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** Partial Delete Elements of a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="Add" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Partial Add data to a profile</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="AddSubtree" type="AddSubtreeType" minOccurs="0" maxOccurs="200">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** Partial Add Sub Tree to a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="AddElement" type="AddElementType" minOccurs="0" maxOccurs="2">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** Partial Add Elements to a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="Modify" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Partial Modify data to a profile</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="ModifySubtree" type="ModifySubtreeType" minOccurs="0" maxOccurs="200">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** Partial Modify Sub Tree to a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ModifyElement" type="ModifyElementType" minOccurs="0" maxOccurs="2">
+                     <xs:annotation>
+                        <xs:documentation>*** SABRE ADDED *** Partial Modify Elements to a profile</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DeleteElementType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema elements that have no child elements and that are at the level of Profile/Customer/xxxx like Email or TPA_ProfileExtensions/xxxx like SpecialDat.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MatchData" type="PartialUpdateElementsMatchDataType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DeleteSubtreeType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema subtrees that are at the level of Profile/Customer/xxxxx like PaymentForm or TPA_ProfileExtensions/xxxx like BusinessTraveler NOTE: PersonName cannot be deleted.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MatchSubtree" type="PartialUpdateProfileType">
+            <xs:annotation>
+               <xs:documentation>Requirement for min 1 instance for general case of subtrees with multiple instances. For subtrees with a single instance like Customer matching data not required</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="IgnoreMatchAttribute" type="PartialUpdateIgnoreAttributesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Attributes that will be ignored during element matching</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="child" type="PartialChildDataType" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="ModifyElementType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema elements that have no child elements and that are at the level of Profile/Customer/xxxx like Email or TPA_ProfileExtensions/xxxx like SpecialDat.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MatchData" type="PartialUpdateElementsMatchDataType"/>
+         <xs:element name="NewData" type="PartialUpdateElementsNewDataType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ModifySubtreeType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema subtrees that are at the level of Profile/Customer/xxxxx like PaymentForm or TPA_ProfileExtensions/xxxx like BusinessTraveler NOTE: PersonName cannot be deleted.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MatchSubtree" type="PartialUpdateProfileType">
+            <xs:annotation>
+               <xs:documentation>Requirement for min 1 instance for general case of subtrees with multiple instances. For subtrees with a single instance like VITCustomer matching data not required. If no match found for criteria then NewSubtree data is created</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="IgnoreMatchAttribute" type="PartialUpdateIgnoreAttributesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>Attributes that will be ignored during element matching</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NewSubtree" type="PartialUpdateProfileType">
+            <xs:annotation>
+               <xs:documentation>Requires as much data as the view of the client has</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="child" type="PartialChildDataType" use="required"/>
+      <xs:attribute name="MergeSubtree" type="YesNoType" use="optional" default="Y"/>
+      <xs:attribute name="AddIfNotFound" type="YesNoType" use="optional" default="N"/>
+   </xs:complexType>
+   <xs:complexType name="AddElementType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema elements that have no child elements and that are at the level of Profile/Customer/xxxx like Email or TPA_ProfileExtensions/xxxx like SpecialDat.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="NewData" type="PartialUpdateElementsNewDataType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AddSubtreeType">
+      <xs:annotation>
+         <xs:documentation>Limited to schema subtrees that are at the level of Profile/Customer/xxxxx like PaymentForm or TPA_ProfileExtensions/xxxx like BusinessTraveler NOTE: PersonName cannot be deleted.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="NewSubtree" type="PartialUpdateProfileType">
+            <xs:annotation>
+               <xs:documentation>Requires as much data as the view of the client has</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="child" type="PartialChildDataType" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="ProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Identity information of a profile</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:complexContent>
+                  <xs:restriction base="TPAIdentityType">
+                     <xs:sequence>
+                        <xs:element name="Login" type="LoginType" minOccurs="0"/>
+                        <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+                        <xs:element name="AuxiliaryID" type="AuxiliaryIDType" minOccurs="0" maxOccurs="5"/>
+                     </xs:sequence>
+                     <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+                        <xs:annotation>
+                           <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+                        <xs:annotation>
+                           <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+                     <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+                     <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+                     <xs:attribute name="ProfileNameModifyIndicator" type="YesNoType" use="optional" default="Y">
+                        <xs:annotation>
+                           <xs:documentation xml:lang="en">Indicates if profile name can be modified or not</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+                        <xs:annotation>
+                           <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+                        <xs:annotation>
+                           <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ProfileStatusCode" type="StatusType" use="optional" default="AC"/>
+                     <xs:attribute name="ProfilePurgeNoDays" type="NumericStringLength1to4" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>Number of days after which the profile should be purged</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:restriction>
+               </xs:complexContent>
+            </xs:complexType>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="Traveler" type="TravelerProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Traveler Profile Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgency" type="TravelAgencyProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agency Profile</xs:documentation>
+               </xs:annotation>
+               <xs:unique name="travelAgencyGDSUniqueness">
+                  <xs:selector xpath="./p3:GDS"/>
+                  <xs:field xpath="@GDSCode"/>
+               </xs:unique>
+               <xs:unique name="travelAgencyCustomDefinedValuesNameUniqueness">
+                  <xs:selector xpath="./p3:CustomDefinedValues"/>
+                  <xs:field xpath="@Name"/>
+               </xs:unique>
+            </xs:element>
+            <xs:element name="TravelAgent" type="TravelAgentProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agent Profile</xs:documentation>
+               </xs:annotation>
+               <xs:unique name="travelAgentGDSUniqueness">
+                  <xs:selector xpath="./p3:GDS"/>
+                  <xs:field xpath="@GDSCode"/>
+               </xs:unique>
+               <xs:unique name="travelAgentCustomDefinedValuesNameUniqueness">
+                  <xs:selector xpath="./p3:CustomDefinedValues"/>
+                  <xs:field xpath="@Name"/>
+               </xs:unique>
+            </xs:element>
+            <xs:element name="Corporation" type="CorporateProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Corporation Profile</xs:documentation>
+               </xs:annotation>
+               <xs:unique name="corporateGDSUniqueness">
+                  <xs:selector xpath="./p3:GDS"/>
+                  <xs:field xpath="@GDSCode"/>
+               </xs:unique>
+               <xs:unique name="corporationCustomDefinedValuesNameUniqueness">
+                  <xs:selector xpath="./p3:CustomDefinedValues"/>
+                  <xs:field xpath="@Name"/>
+               </xs:unique>
+            </xs:element>
+            <xs:element name="OperationalProfile" type="OperationalProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Operational Profiles data</xs:documentation>
+               </xs:annotation>
+               <xs:unique name="operationalCustomDefinedValuesNameUniqueness">
+                  <xs:selector xpath="./p3:CustomDefinedValues"/>
+                  <xs:field xpath="@Name"/>
+               </xs:unique>
+            </xs:element>
+            <xs:element name="AllianceProfile" type="AllianceProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>*** SABRE ADDED *** To hold Alliance Profile data</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="GroupProfile" type="GroupProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Corporation Profile</xs:documentation>
+               </xs:annotation>
+               <xs:unique name="groupProfileGDSUniqueness">
+                  <xs:selector xpath="./p3:GDS"/>
+                  <xs:field xpath="@GDSCode"/>
+               </xs:unique>
+               <xs:unique name="groupProfileCustomDefinedValuesNameUniqueness">
+                  <xs:selector xpath="./p3:CustomDefinedValues"/>
+                  <xs:field xpath="@Name"/>
+               </xs:unique>
+            </xs:element>
+         </xs:choice>
+         <xs:choice minOccurs="0">
+            <xs:element name="IgnoreSubjectArea" type="IgnoreSubjectAreaType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** Determines what Subject areas can be loaded along with the webservice operation</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+         <xs:element name="Association" type="ProfileAssociationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold associated data identity information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PrimaryLanguageIDCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="IgnoreSubjectAreaType">
+      <xs:sequence>
+         <xs:element name="SubjectAreaName" type="SubjectAreaNamesType" maxOccurs="25"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="PartialChildDataType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifes an action to take place.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="/Profile/TPA_Identity/Login"/>
+         <xs:enumeration value="/Profile/TPA_Identity/ProfileSubType"/>
+         <xs:enumeration value="/Profile/TPA_Identity/SecurityInfo"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/Address"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/Document"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/CustLoyalty"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/Email"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/EmergencyContactPerson"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/EmploymentInfo"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/PaymentForm"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/PersonName"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/RelatedTraveler"/>
+         <xs:enumeration value="/Profile/Traveler/Customer/Telephone"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/AirlineCabinPref"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/AirlineMealPref"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/AirlineSeatPref"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/AirlineUpgradePref"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/AirportPref"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/PreferredAggregator"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/AirlinePref/PreferredAirlines"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/HotelPref/PreferredAggregator"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/HotelPref/PreferredHotel"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/VehicleRentalPref/PreferredAggregator"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/VehicleRentalPref/PreferredVehicleVendors"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/TPA_MarketingPreference/NotificationPreference"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/TPA_MarketingPreference/Consent"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/TPA_MarketingPreference/PsychographicCategory"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/PriorityRemarks"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/Remark"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/SSR"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/OSI"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/CustomerReferenceInfo"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/AssociatedProfiles"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/AssociatedFilters"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/AssociatedTemplate"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/Discounts"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/CustomDefinedData"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/CustomerValueScore"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/TravelPolicy/SabreTravelPolicy/Policy"/>
+         <xs:enumeration value="/Profile/Traveler/TPA_Extensions/TravelPolicy/SabreTravelPolicy/Preference"/>
+         <xs:enumeration value="/Profile/TravelAgency/TravelPolicy/SabreTravelPolicy/Policy"/>
+         <xs:enumeration value="/Profile/TravelAgency/TravelPolicy/SabreTravelPolicy/Preference"/>
+         <xs:enumeration value="/Profile/Corporation/TravelPolicy/SabreTravelPolicy/Policy"/>
+         <xs:enumeration value="/Profile/Corporation/TravelPolicy/SabreTravelPolicy/Preference"/>
+         <xs:enumeration value="/Profile/GroupProfile/TravelPolicy/SabreTravelPolicy/Policy"/>
+         <xs:enumeration value="/Profile/GroupProfile/TravelPolicy/SabreTravelPolicy/Preference"/>
+         <xs:enumeration value="/Profile/GroupProfile/PaymentForm"/>
+         <xs:enumeration value="/Profile/OperationalProfile/TravelPolicy/SabreTravelPolicy/Policy"/>
+         <xs:enumeration value="/Profile/OperationalProfile/TravelPolicy/SabreTravelPolicy/Preference"/>
+         <xs:enumeration value="/Profile/OperationalProfile/PaymentForm"/>
+         <xs:enumeration value="/Profile/TravelAgency/AgencyContactName"/>
+         <xs:enumeration value="/Profile/TravelAgency/AgencyInfo"/>
+         <xs:enumeration value="/Profile/TravelAgency/Telephone"/>
+         <xs:enumeration value="/Profile/TravelAgency/Email"/>
+         <xs:enumeration value="/Profile/TravelAgency/Address"/>
+         <xs:enumeration value="/Profile/TravelAgency/PaymentForm"/>
+         <xs:enumeration value="/Profile/TravelAgency/EmergencyContactPerson"/>
+         <xs:enumeration value="/Profile/TravelAgency/GDS"/>
+         <xs:enumeration value="/Profile/TravelAgency/OtherSystemIdentityInfo"/>
+         <xs:enumeration value="/Profile/TravelAgency/Branding"/>
+         <xs:enumeration value="/Profile/TravelAgency/PriorityRemarks"/>
+         <xs:enumeration value="/Profile/TravelAgency/Remark"/>
+         <xs:enumeration value="/Profile/TravelAgency/CustomerReferenceInfo"/>
+         <xs:enumeration value="/Profile/TravelAgency/AssociatedProfiles"/>
+         <xs:enumeration value="/Profile/TravelAgency/AssociatedFilters"/>
+         <xs:enumeration value="/Profile/TravelAgency/AssociatedTemplate"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/AirlinePref/AirportOriginPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/AirlinePref/AirlineSeatPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/AirlinePref/AirlineMealPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/HotelPref/HotelChainPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/HotelPref/HotelMealPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/VehicleRentalPref/VehicleVendorPref"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/TPA_MarketingPreference/NotificationPreference"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/TPA_MarketingPreference/Consent"/>
+         <xs:enumeration value="/Profile/TravelAgency/PrefCollections/TPA_MarketingPreference/PsychographicCategory"/>
+         <xs:enumeration value="/Profile/TravelAgency/Discounts"/>
+         <xs:enumeration value="/Profile/TravelAgency/CustomDefinedData"/>
+         <xs:enumeration value="/Profile/Corporation/CorporateInfo"/>
+         <xs:enumeration value="/Profile/Corporation/ContactName"/>
+         <xs:enumeration value="/Profile/Corporation/Telephone"/>
+         <xs:enumeration value="/Profile/Corporation/Email"/>
+         <xs:enumeration value="/Profile/Corporation/Address"/>
+         <xs:enumeration value="/Profile/Corporation/PaymentForm"/>
+         <xs:enumeration value="/Profile/Corporation/EmergencyContactPerson"/>
+         <xs:enumeration value="/Profile/Corporation/SalesManager"/>
+         <xs:enumeration value="/Profile/Corporation/PriorityRemarks"/>
+         <xs:enumeration value="/Profile/Corporation/Remark"/>
+         <xs:enumeration value="/Profile/Corporation/CustomerReferenceInfo"/>
+         <xs:enumeration value="/Profile/Corporation/AssociatedProfiles"/>
+         <xs:enumeration value="/Profile/Corporation/AssociatedFilters"/>
+         <xs:enumeration value="/Profile/Corporation/AssociatedTemplate"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/AirlinePref/AirportOriginPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/AirlinePref/AirlineSeatPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/AirlinePref/AirlineMealPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/HotelPref/HotelChainPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/HotelPref/HotelMealPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/VehicleRentalPref/VehicleVendorPref"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/TPA_MarketingPreference/NotificationPreference"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/TPA_MarketingPreference/Consent"/>
+         <xs:enumeration value="/Profile/Corporation/PrefCollections/TPA_MarketingPreference/PsychographicCategory"/>
+         <xs:enumeration value="/Profile/Traveler/PrefCollections/LoungePref"/>
+         <xs:enumeration value="/Profile/Corporation/Discounts"/>
+         <xs:enumeration value="/Profile/Corporation/CustomDefinedData"/>
+         <xs:enumeration value="/Profile/TravelAgent/AgentName"/>
+         <xs:enumeration value="/Profile/TravelAgent/AgentInfo"/>
+         <xs:enumeration value="/Profile/TravelAgent/OtherSystemIdentityInfo"/>
+         <xs:enumeration value="/Profile/TravelAgent/Telephone"/>
+         <xs:enumeration value="/Profile/TravelAgent/Email"/>
+         <xs:enumeration value="/Profile/TravelAgent/Address"/>
+         <xs:enumeration value="/Profile/TravelAgent/PaymentForm"/>
+         <xs:enumeration value="/Profile/TravelAgent/AgentRelatedNames"/>
+         <xs:enumeration value="/Profile/TravelAgent/EmergencyContactPerson"/>
+         <xs:enumeration value="/Profile/TravelAgent/Document"/>
+         <xs:enumeration value="/Profile/TravelAgent/CustLoyalty"/>
+         <xs:enumeration value="/Profile/TravelAgent/EmploymentInfo"/>
+         <xs:enumeration value="/Profile/TravelAgent/GDS"/>
+         <xs:enumeration value="/Profile/TravelAgent/PriorityRemarks"/>
+         <xs:enumeration value="/Profile/TravelAgent/Remark"/>
+         <xs:enumeration value="/Profile/TravelAgent/CustomerReferenceInfo"/>
+         <xs:enumeration value="/Profile/TravelAgent/AssociatedProfiles"/>
+         <xs:enumeration value="/Profile/TravelAgent/AssociatedFilters"/>
+         <xs:enumeration value="/Profile/TravelAgent/AssociatedTemplate"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/AirlinePref/AirportOriginPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/AirlinePref/AirlineSeatPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/AirlinePref/AirlineMealPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/HotelPref/HotelChainPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/HotelPref/HotelMealPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/VehicleRentalPref/VehicleVendorPref"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/TPA_MarketingPreference/NotificationPreference"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/TPA_MarketingPreference/Consent"/>
+         <xs:enumeration value="/Profile/TravelAgent/PrefCollections/TPA_MarketingPreference/PsychographicCategory"/>
+         <xs:enumeration value="/Profile/TravelAgent/Discounts"/>
+         <xs:enumeration value="/Profile/TravelAgent/CustomDefinedData"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="PartialUpdateProfileType">
+      <xs:choice>
+         <xs:element name="Traveler" type="PartialUpdateTravelerProfileType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Traveler profile content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="PartialUpdateSabreTravelPolicyType">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre New Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <!--xs:element name="TravelAgency" type="PartialUpdateTravelAgencyProfileType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Agency  profile content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TravelAgent" type="PartialUpdateTravelAgentProfileType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Agent  profile content.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Corporation" type="PartialUpdateCorporationProfileType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Corporation  profile content.</xs:documentation>
+				</xs:annotation>
+			</xs:element-->
+         <xs:element name="PaymentForm" type="PaymentFormType"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="PartialUpdateTravelerProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for partial Traveler profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="PersonName" type="PersonNameType"/>
+         <xs:element name="Telephone" type="TelephoneType"/>
+         <xs:element name="Email" type="EmailType"/>
+         <xs:element name="Address" type="AddressType"/>
+         <xs:element name="PaymentForm" type="PaymentFormType">
+            <xs:annotation>
+               <xs:documentation>*** Deprecated *** please use //element(*,PartialUpdateProfileType)/PaymentForm</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="RelatedIndividual" type="RelatedIndividualType"/>
+         <xs:element name="EmergencyContactPerson" type="EmergencyContactPersonType"/>
+         <xs:element name="Document" type="DocumentType"/>
+         <xs:element name="CustLoyalty" type="CustLoyaltyType"/>
+         <xs:element name="EmploymentInfo" type="EmploymentInfoType"/>
+         <xs:element name="AirlinePref" type="PartialAirlinePrefType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Airline Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="HotelPref" type="PartialHotelPrefType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Hotel Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="VehicleRentalPref" type="PartialVehicleRentalPrefType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***OTA Based *** Vehicle Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LoungePref" type="PartialLoungePrefType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Lounge Preference Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NotificationPreference" type="NotificationPreferenceType"/>
+         <xs:element name="Consent" type="ConsentType"/>
+         <xs:element name="PsychographicCategory" type="PsychographicCategoryType"/>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType"/>
+         <xs:element name="Remark" type="RemarkType"/>
+         <xs:element name="SSR" type="SSRType"/>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType"/>
+         <xs:element name="AssociatedProfiles" type="AssociatedProfilesType"/>
+         <xs:element name="AssociatedFilters" type="AssociatedFiltersType"/>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType"/>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerValueScore" type="CustomerValueScoreType">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Value Score Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Login" type="LoginType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">DEPRECATED: In next version of schema element Login will be removed from add modify and delete subtree operation. Functionality will be replaced delivered by add, modify and delete element operations</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SecurityInfo" type="SecurityInfoType"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType"/>
+         <xs:element name="OSI" type="OSIType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="PartialUpdateElementsNewDataType">
+      <xs:sequence>
+         <xs:element name="Traveler" type="PartialTravelerElementNewDataListType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Traveler profile content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="SabreTravelPolicyIdentityType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Sabre Travel Policy content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AuxiliaryID" type="AuxiliaryIDType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Partial Update Auxilary Identifier content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PartialUpdateElementsMatchDataType">
+      <xs:sequence>
+         <xs:element name="Traveler" type="PartialTravelerElementMatchDataListType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Traveler profile content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="SabreTravelPolicyIdentityType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Partial Update Sabre Travel Policy content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AuxiliaryID" type="PartialUpdateElementsMatchAuxiliaryIDType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Partial Update Auxilary Identifier content.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PartialUpdateElementsMatchAuxiliaryIDType">
+      <xs:attribute name="IDTypeCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** An auxilary identifier type code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PartialTravelerElementMatchDataListType">
+      <xs:attribute name="BirthDate" type="xs:date" use="optional"/>
+      <xs:attribute name="MaritalStatus" type="StringLength1" use="optional"/>
+      <xs:attribute name="Gender" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="AgeRange" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** DEPRECATED *** DomainID cannot be empty. It also cannot be updated: a profile can be moved to other domain using Sabre_OTA_ProfileDataMgmtRQ/MoveDomainObject.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileStatus" type="StatusType" use="optional">
+         <xs:annotation>
+            <xs:documentation>ProfileStatus is DEPRECATED in Delete and Add operaions but USED in Modify operation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LoginID" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="Password" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional"/>
+      <xs:attribute name="ProfilePurgeNoDays" type="NumericStringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of days after which the profile should be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileSubTypeCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="CitizenCountryCode" type="StringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PartialTravelerElementNewDataListType">
+      <xs:complexContent>
+         <xs:extension base="PartialTravelerElementMatchDataListType">
+            <xs:attribute name="PasswordIsHashed" type="YesNoType" use="optional"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="DeleteProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="DeleteTPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Profile Delete data holder</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged, if the value is 0 then it is an immediate Delete if not it is a flag for future delete</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="StatusCode" type="StatusType" use="optional" default="DL"/>
+   </xs:complexType>
+   <xs:complexType name="DeleteMetadataType">
+      <xs:complexContent>
+         <xs:extension base="MetadataIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications ex: MYS, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Profile Type code of Profile this Metadata binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RestoreProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="DeleteTPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Profile Delete data holder</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="RetrieveCustomFieldCodesType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre to get CustomFieldCodes</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RetrieveCustomFieldCodesRSType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Response for RetrieveCustomFieldCodes</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Message" type="StringLength1to120" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED ***Response Messages</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomFieldCode" type="StringLength1to32" minOccurs="0" maxOccurs="250"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="CreateCustomFieldCodeType">
+      <xs:sequence>
+         <xs:element name="CategoryCode" type="CategoryCodeType" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Data Source Information, If not populated it means the data is totally shared and no POS is considered Owner, if populated then it means the POS that is identified as primary has every ability to overrite the existing data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CategoryCodeType">
+      <xs:annotation>
+         <xs:documentation>Create Customer Defined data type data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CustomFieldCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="CustomFieldCodeDescription" type="StringLength1to32" use="optional"/>
+      <xs:attribute name="CustomFieldDataType" type="FieldCodeDataType" use="optional">
+         <xs:annotation>
+            <xs:documentation/>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CustomFieldMinSize" type="xs:integer" use="optional">
+         <xs:annotation>
+            <xs:documentation/>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CustomFieldMaxSize" type="xs:integer" use="optional">
+         <xs:annotation>
+            <xs:documentation/>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="CreateCustomFieldCodeRSType">
+      <xs:annotation>
+         <xs:documentation>Create Customer Defined data type data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CategoryCode" type="CategoryCodeRSType" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Data Source Information, If not populated it means the data is totally shared and no POS is considered Owner, if populated then it means the POS that is identified as primary has every ability to overrite the existing data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="CategoryCodeRSType">
+      <xs:annotation>
+         <xs:documentation>Create Customer Defined data type data</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="CustomFieldCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Message" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>Message</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteDomainProfilesType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ProfileTypeCode" type="SearchProfileTypeInfo" use="required"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged, if the value is 0 then it is an immediate Delete if not it is a flag for future delete</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RestoreDomainProfilesType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ProfileTypeCode" type="SearchProfileTypeInfo" use="required"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="FilterTPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Identity information of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="Traveler" type="FilterTravelerProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Traveler Profile Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgency" type="FilterTravelAgencyProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agency Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgent" type="FilterTravelAgentProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agent Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Corporation" type="FilterCorporateProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Corporation Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="OperationalProfile" type="FilterOperationalProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Operational Profiles data</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="GroupProfile" type="FilterGroupProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Group Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemplateProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="TemplateTPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Identity information of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="Traveler" type="TemplateTravelerProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Traveler Profile Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgency" type="TemplateTravelAgencyProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agency Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="TravelAgent" type="TemplateTravelAgentProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Travel Agent Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Corporation" type="TemplateCorporateProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Corporation Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="OperationalProfile" type="TemplateOperationalProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Operational Profiles data</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="GroupProfile" type="TemplateGroupProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Group Profile</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PrimaryLanguageIDCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the primary language preference for the message. The human language is identified by ISO 639 codes.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DupChkProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="DupChkTPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Identity information of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="Traveler" type="DupChkTravelerProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Traveler Profile Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DupChkRSProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="TPAIdentityType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Identity information of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="Traveler" type="DupChkRSTravelerProfileType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">***SABRE ADDED*** To hold Traveler Profile Information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="IgnoreReadSubjectAreasType">
+      <xs:sequence>
+         <xs:element name="SubjectAreaName" type="SubjectAreaNamesType" maxOccurs="25"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PartialReadSubjectAreasType">
+      <xs:sequence>
+         <xs:element name="SubjectAreaName" type="SubjectAreaNamesType" maxOccurs="25"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ReadProfilesType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Profile" type="ReadProfileType" maxOccurs="700"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ReadProfileType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for profile content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity">
+            <xs:complexType>
+               <xs:complexContent>
+                  <xs:restriction base="TPAIdentityType">
+                     <xs:sequence>
+                        <xs:element name="Login" type="LoginType" minOccurs="0"/>
+                        <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+                        <xs:element name="AuxiliaryID" type="AuxiliaryIDType" minOccurs="0"/>
+                     </xs:sequence>
+                     <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+                        <xs:annotation>
+                           <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+                        <xs:annotation>
+                           <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+                     <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional"/>
+                     <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+                     <xs:attribute name="ProfileNameModifyIndicator" type="YesNoType" use="optional" default="Y">
+                        <xs:annotation>
+                           <xs:documentation xml:lang="en">Indicates if profile name can be modified or not</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+                        <xs:annotation>
+                           <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+                        <xs:annotation>
+                           <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                     <xs:attribute name="ProfileStatusCode" type="StatusType" use="optional" default="AC"/>
+                     <xs:attribute name="ProfilePurgeNoDays" type="NumericStringLength1to4" use="optional">
+                        <xs:annotation>
+                           <xs:documentation>Number of days after which the profile should be purged</xs:documentation>
+                        </xs:annotation>
+                     </xs:attribute>
+                  </xs:restriction>
+               </xs:complexContent>
+            </xs:complexType>
+         </xs:element>
+         <xs:choice minOccurs="0">
+            <xs:element name="IgnoreReadSubjectAreas" type="IgnoreReadSubjectAreasType" minOccurs="0"/>
+            <xs:element name="PartialReadSubjectAreas" type="PartialReadSubjectAreasType" minOccurs="0"/>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ReadFilterType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Filter in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="FilterID" type="NumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ReadTemplateType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Template in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TemplateID" type="NumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the template in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ReadFormatType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Format in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="FormatID" type="NumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ReadRSProfilesType">
+      <xs:annotation>
+         <xs:documentation>Returns multiple profiles</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Profile" type="ProfileType" maxOccurs="700">
+            <xs:annotation>
+               <xs:documentation>*** OTA Based *** If name search finds more than one profile choose VITProfiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ReadMetadataType">
+      <xs:complexContent>
+         <xs:extension base="MetadataIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications ex: MYS, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">*** DEPRECATED *** Profile Type code of Profile this Metadata binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="MergedProfileType">
+      <xs:annotation>
+         <xs:documentation>Merged profile info</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="TPAIdentityType"/>
+         <xs:element name="ActivePNR" type="ActivePNRType" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PNRType">
+      <xs:annotation>
+         <xs:documentation>Describes PNR record locator</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="RecordLocator" type="StringLength1to6" use="required">
+         <xs:annotation>
+            <xs:documentation>PNR record locator code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ResponseDataType">
+      <xs:annotation>
+         <xs:documentation>Describes profile merge response</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="MasterProfile" type="MergeTPAIdentityType"/>
+         <xs:element name="MergedProfile" type="MergedProfileType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ActivePNRType">
+      <xs:sequence>
+         <xs:element name="PNR" type="PNRType" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AllianceProfileType">
+      <xs:sequence>
+         <xs:element name="Traveler">
+            <xs:annotation>
+               <xs:documentation>***SABRE ADDED*** To hold Traveler Alliance Profile Information</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="PersonName" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>***SABRE ADDED*** To hold Traveler Name</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="NamePrefix" type="StringLength1to100" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Salutation of honorific. (e.g., Mr. Mrs., Ms., Miss, Dr.)</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="GivenName" type="StringLength1to100">
+                              <xs:annotation>
+                                 <xs:documentation>Given name, first name or names</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="MiddleName" type="StringLength1to100" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>The middle name of the person name</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="SurName" type="StringLength1to100">
+                              <xs:annotation>
+                                 <xs:documentation>Family name, last name.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="NameSuffix" type="StringLength1to100" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Hold various name suffixes and letters (e.g. Jr., Sr., III, Ret., Esq.).</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="CustLoyalty">
+                     <xs:annotation>
+                        <xs:documentation>***OTA Based *** Customer Loyalty (Frequent Flyer, Prefered Vendor etc.) Information</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="AllianceMembershipLevel" type="AllianceMembershipLevelType" maxOccurs="50"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                     <xs:unique name="allianceMembershipLevelVendorUniqueness">
+                        <xs:selector xpath="./p3:AllianceMembershipLevel"/>
+                        <xs:field xpath="@VendorCode"/>
+                     </xs:unique>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AllianceMembershipLevelType">
+      <xs:attribute name="VendorCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifier to indicate the company owner of the loyalty program.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorTypeCode" type="StringLength1to8" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Represents a classification of Industry Service providers, like AL (Airline), AC (alliance) etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TierLevelValue" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>Membership value like 0, 2 etc.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ReadValidatorType">
+      <xs:complexContent>
+         <xs:extension base="ValidatorIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications Ex: MYS, EXT, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">*** DEPRECATED *** Profile Type code of Profile this Validator binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="DeleteValidatorType">
+      <xs:complexContent>
+         <xs:extension base="ValidatorIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications Ex: MYS, EXT, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Profile Type code of Profile this Validator binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FilterType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Filter content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Profile" type="FilterProfileType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** OTA Based *** Filter Strucutre of a profile data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="FilterAssociatedProfilesType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Profiles Associated to a Template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFormats" type="AssociatedFormatsType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Formats associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="FilterID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterName" type="StringLength1to120" use="required"/>
+      <xs:attribute name="FilterDescription" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="MainProfileOrderSeqNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterStatusCode" type="StatusType" use="optional"/>
+      <xs:attribute name="FilterPurgeNoOfDays" type="NumericStringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of days after which the Template should be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterTypeCode" type="ProfileTypeInfo" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="TemplateType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Template content.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Profile" type="TemplateProfileType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE Based *** Template Strucutre of a profile data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="AssociatedProfilesType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Profiles Associated to a Template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFilters" type="TemplateAssociatedFiltersType" minOccurs="0" maxOccurs="100">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Filters associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFormats" type="TemplateAssociatedFormatsType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Formats associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TemplateID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the template in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="TemplateName" type="StringLength1to120" use="required"/>
+      <xs:attribute name="TemplateDescription" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="TemplateTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SuperTemplateIndicator" type="YesNoType" use="optional" default="U">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes whether this template is the Super Template for an agency.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DefaultIndicator" type="YesNoType" use="optional" default="U">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes whether this template is the default agency.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateStatusCode" type="StatusType" use="optional"/>
+      <xs:attribute name="TemplatePurgeNoOfDays" type="NumericStringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of days after which the Template should be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociationIdentityType">
+      <xs:complexContent>
+         <xs:extension base="AssociationIDType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">Identity of a Association in database</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="AssociationName" type="StringLength1to120" use="required">
+               <xs:annotation>
+                  <xs:documentation>Name of the association</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications ex: MYS, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional">
+               <xs:annotation>
+                  <xs:documentation>*** DEPRECATED *** Profile type code, used to validate associated information</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociationHeaderBaseType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Temporary type to make ProfileType code mandatory and remove the Deprecated annotation. This type should be removed after final cleanup of AssociationIdenity (removal of ProfileTypeCode)</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:restriction base="AssociationIdentityType">
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required">
+               <xs:annotation>
+                  <xs:documentation>Profile type code</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:restriction>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociationHeaderType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Association header content.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AssociationHeaderBaseType">
+            <xs:attribute name="AssociationDescription" type="StringLength1to255" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Description of an association if needed</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Timestamp data, constains information when association was created</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Timestamp data, constains information when association was updated last time</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociationType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Association content.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="AssociationHeaderType">
+            <xs:sequence>
+               <xs:element name="AssociatedProfiles" type="AssociatedProfilesType" minOccurs="0" maxOccurs="500">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">Information about profiles associated with Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="AssociatedFilters" type="TemplateAssociatedFiltersType" minOccurs="0" maxOccurs="100">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">Information about Filters associated with Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="AssociatedFormats" type="TemplateAssociatedFormatsType" minOccurs="0" maxOccurs="500">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">Information about Formats associated with Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="AssociatedMetadata" type="AssociatedMetadataType" minOccurs="0" maxOccurs="25">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">Information about Metadata associated with Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="AssociatedValidators" type="AssociatedValidatorType" minOccurs="0" maxOccurs="25">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">Information about Profile validators associated with Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ProfileAssociationType">
+      <xs:complexContent>
+         <xs:extension base="AssociationIDType">
+            <xs:attribute name="AssociationDescription" type="StringLength1to255" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Description of an association if needed</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="AssociationName" type="StringLength1to120" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Name of the association</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications ex: MYS, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Profile type code, used to validate associated information</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Timestamp data, constains information when association was created</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Timestamp data, constains information when association was updated last time</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>
