@@ -1,0 +1,761 @@
+<!--edited with XMLSpy v2012 (http://www.altova.com) by Witold Hajderek (HP/ Sabre)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns="http://www.sabre.com/eps/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm. It contains Sabre modifications for EPS project. Added elements are described as *SABRE ADDED*</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="TemplateAssociatedFiltersType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Filter content.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="FilterID" type="NumericStringLength1to20" use="required"/>
+      <xs:attribute name="SequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterName" type="StringLength1to120" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the filter</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TemplateAssociatedFormatsType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Format content.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="FormatID" type="AlphaNumericStringLength1to20" use="required"/>
+      <xs:attribute name="FormatName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">This attribute should be used as OrderSequenceNo, different name is for schema backward compatibility</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociatedFormatsType">
+      <xs:complexContent>
+         <xs:extension base="TemplateAssociatedFormatsType">
+            <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+               <xs:annotation>
+                  <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FilterIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Filter in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="FilterID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the Filter</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TemplateIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Template in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TemplateID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the template in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the template</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchFormatIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Format content.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="FormatIdentityType">
+            <xs:attribute name="FormatType" type="StringLength1to60" use="required"/>
+            <xs:attribute name="FormatTypeSuffix" type="StringLength1to25" use="optional"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormatType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Root element for Format content.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="SearchFormatIdentityType">
+            <xs:attribute name="FormatData" type="StringLength1to4000" use="optional">
+               <xs:annotation>
+                  <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="CreateDateTime" type="xs:dateTime" use="required">
+               <xs:annotation>
+                  <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="required">
+               <xs:annotation>
+                  <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="FormatStatusCode" type="StatusType" use="optional"/>
+            <xs:attribute name="FormatPurgeNoOfDays" type="NumericStringLength1to4" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Number of days after which the Template should be purged</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormatIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identity of a Format in database</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="FormatID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FormatName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the filter</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteTemplateType">
+      <xs:attribute name="TemplateID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="StatusCode" type="StatusType" use="optional" default="DL"/>
+   </xs:complexType>
+   <xs:complexType name="RestoreTemplateType">
+      <xs:attribute name="TemplateID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteFilterType">
+      <xs:attribute name="FilterID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="StatusCode" type="StatusType" use="optional" default="DL"/>
+   </xs:complexType>
+   <xs:complexType name="RestoreFilterType">
+      <xs:attribute name="FilterID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Filter in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteFormatType">
+      <xs:attribute name="FormatID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Format in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the Format needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="StatusCode" type="StatusType" use="optional" default="DL"/>
+   </xs:complexType>
+   <xs:complexType name="RestoreFormatType">
+      <xs:attribute name="FormatID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Format in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteDomainType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the Format needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RestoreDomainType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ConfigurationType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">*** SABRE ADDED *** Configuration Data Store</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="FormatConfiguration" type="FormatConfigurationType" minOccurs="0" maxOccurs="20">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Configuration Options on Formats</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataConfiguration" type="DataConfigurationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Configuration Options on Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AccessConfiguration" type="AccessConfigurationType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Configuration Options on Access</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ConfigurationID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the Configuration in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainLevelConfig" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if the configuration is applied at Domain Level or Profile level</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FormatConfigurationType">
+      <xs:sequence>
+         <xs:element name="DateFormatType" type="StringLength10" default="YYYY-MM-DD" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="RegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Region Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DataConfigurationType"/>
+   <xs:complexType name="AccessConfigurationType"/>
+   <xs:complexType name="DeleteDomainTemplatesType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RestoreDomainTemplatesType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteDomainFiltersType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the profile needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RestoreDomainFiltersType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteDomainFormatsType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="PurgeDays" type="NumericStringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Number of days after which the Format needs to be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RestoreDomainFormatsType">
+      <xs:attribute name="DomainID" type="StringLength1to10" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AccessInfoType">
+      <xs:attribute name="EPRDomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This attribute will store information about pseudo-city or a partition or ICE group associated to EPR.This will be the domain, suffix, pseudo-city or logical entity. e.g : B1Z0, F9 etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DutyCd" type="StringLength1to10" use="optional"/>
+      <xs:attribute name="UserID" type="StringLength1to32" use="required">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This will be either EPR ID or ICE UPR ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LDAPDomain" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This is AgSS partition, company name or business unit name in the LDAP. e.g : Sabre, AA, F9, HA etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LNIATA" type="StringLength1to32" use="optional"/>
+      <xs:attribute name="AgentSine" type="StringLength1to64" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This is the Agent Sine information</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentGivenName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent First Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentMiddleName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent Middle Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentSurName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent Last Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ValidatorType">
+      <xs:complexContent>
+         <xs:extension base="ValidatorIdentityType">
+            <xs:sequence>
+               <xs:element name="ValidatorRule" type="ValidatorRuleType" maxOccurs="1000"/>
+            </xs:sequence>
+            <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional"/>
+            <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional"/>
+            <xs:attribute name="ValidatorDescription" type="StringLength1to120" use="optional"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ValidatorRuleType">
+      <xs:sequence>
+         <xs:choice minOccurs="0">
+            <xs:element name="Restriction" type="RestrictionType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Type of restriction for Profile element: RQ - Required, OP - Optional, NA - Not Allowed</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="OccurrenceRule" minOccurs="0">
+               <xs:complexType>
+                  <xs:attribute name="MinOcc" type="NumericStringLength1to3" use="required">
+                     <xs:annotation>
+                        <xs:documentation>Minimal number of occurences of validated element</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="MaxOcc" type="NumericStringLength1to3">
+                     <xs:annotation>
+                        <xs:documentation>Maximal number of occurences of validated element</xs:documentation>
+                     </xs:annotation>
+                  </xs:attribute>
+               </xs:complexType>
+            </xs:element>
+         </xs:choice>
+         <xs:element name="RegexpRule" minOccurs="0" maxOccurs="5">
+            <xs:complexType>
+               <xs:attribute name="Regexp" type="StringLength1to200" use="required">
+                  <xs:annotation>
+                     <xs:documentation>Regular expression against which Profile element will be validated</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="PredefinedRule" minOccurs="0" maxOccurs="5">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="RuleParam" minOccurs="0" maxOccurs="10">
+                     <xs:complexType>
+                        <xs:attribute name="Name" type="StringLength1to20" use="required">
+                           <xs:annotation>
+                              <xs:documentation>Name of parameter of custom function which will be passed to it</xs:documentation>
+                           </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="Value" type="StringLength1to20" use="required">
+                           <xs:annotation>
+                              <xs:documentation>Value of parameter of custom function which will be passed to it</xs:documentation>
+                           </xs:annotation>
+                        </xs:attribute>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+               <xs:attribute name="ValidatorCode" type="StringLength1to20" use="required">
+                  <xs:annotation>
+                     <xs:documentation>Name of predefined custom function which will be called to validate Profile element</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="XPath" type="StringLength1to1000" use="required">
+         <xs:annotation>
+            <xs:documentation>XPath expression for Profile element which will be validated</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ValidatorIDType">
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ValidatorID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of Validator in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ValidatorIdentityType">
+      <xs:complexContent>
+         <xs:extension base="ValidatorIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications Ex: MYS, EXT, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Profile Type code of Profile this Validator binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ValidatorName" type="StringLength1to120" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Name of the validator</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="AssociatedValidatorType">
+      <xs:complexContent>
+         <xs:extension base="ValidatorIdentityType">
+            <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="MetadataType">
+      <xs:complexContent>
+         <xs:extension base="MetadataIdentityType">
+            <xs:sequence>
+               <xs:element name="MetaTag" type="MetaTagType" minOccurs="0" maxOccurs="1000">
+                  <xs:annotation>
+                     <xs:documentation>Descriptor of one element of Metadata. E.g. Email</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Timestamp when Metadata was created</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Timestamp when Metadata was updated last time</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MetadataDescription" type="StringLength1to120" use="optional">
+               <xs:annotation>
+                  <xs:documentation>Description of Metadata</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="MetaTagType">
+      <xs:attribute name="XPath" type="StringLength1to1000" use="required">
+         <xs:annotation>
+            <xs:documentation>XPath expression for Profile element described in Metadata</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Accessibility" type="AccessibilityType" use="required">
+         <xs:annotation>
+            <xs:documentation>Access mode for Profile element described in Metadata: RW - Readable/Writeable, RO - Read Only, NA - Not Available</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DefaultValue" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation>Default value for Profile element described in Metadata</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="NmbrOfElements" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of Profile elements to be shown. E.g. number of Emails</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="MetadataIdentityType">
+      <xs:complexContent>
+         <xs:extension base="MetadataIDType">
+            <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+               <xs:annotation>
+                  <xs:documentation>ClientContextCode indicated calling applications ex: MYS, NTC</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Profile Type code of Profile this Metadata binded to</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MetadataName" type="StringLength1to120">
+               <xs:annotation>
+                  <xs:documentation>Name of the metadata</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="MetadataIDType">
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MetadataID" type="AlphaNumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">ID of the Metadata in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociatedMetadataType">
+      <xs:complexContent>
+         <xs:extension base="MetadataIdentityType">
+            <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>

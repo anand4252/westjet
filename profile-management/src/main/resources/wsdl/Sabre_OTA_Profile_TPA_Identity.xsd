@@ -1,0 +1,332 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Jacek Majchrzak (HP/ Sabre)-->
+<!--edited with XMLSpy v2011 sp1 (http://www.altova.com) by Olesksandr Leshchenko (HP)-->
+<!--edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Maciej Kolodziej (EDS/SABRE ACCT)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_SimpleTypes.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:complexType name="TPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="LoginType" minOccurs="0"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+         <xs:element name="AuxiliaryID" type="AuxiliaryIDType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="optional"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileNameModifyIndicator" type="YesNoType" use="optional" default="Y">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Indicates if profile name can be modified or not</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileStatusCode" type="StatusType" use="optional" default="AC"/>
+      <xs:attribute name="ProfilePurgeNoDays" type="NumericStringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of days after which the profile should be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ProfileSubTypeType">
+      <xs:attribute name="SubTypeCode" type="StringLength1to3" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="LoginType">
+      <xs:sequence>
+         <xs:element name="SecurityInfo" type="SecurityInfoType" minOccurs="0" maxOccurs="10">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Security Information associated with a Login</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="LoginID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="PasswordHash" type="StringLength1to256" use="optional"/>
+      <xs:attribute name="PasswordExpired" type="YesNoType" use="optional"/>
+      <xs:attribute name="SiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sitename for which the login ID will be associated ( Site can be a website , POS etc , or Site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SubSiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Subsite of the Sitename for which the login ID will be associated ( SubSite can be a website , POS etc , or subsite of the site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IsHashed" type="YesNoType" use="optional" default="Y"/>
+   </xs:complexType>
+   <xs:complexType name="SecurityInfoType">
+      <xs:annotation>
+         <xs:documentation>** SABRE ADDED ** Security Information associated with a Login</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="SecurityQuestionCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="SecurityAnswerHash" type="StringLength1to256" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="DeleteTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="DeleteLoginType" minOccurs="0"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+         <xs:element name="AuxiliaryID" type="AuxiliaryIDType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DeleteLoginType">
+      <xs:attribute name="LoginID" type="StringLength1to120" use="required"/>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNR_TPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileStatusCode" type="StatusType" use="optional" default="AC"/>
+      <xs:attribute name="PNRMoveOrderSeqNo" type="NumericStringLength1to3"/>
+      <xs:attribute name="FormatOrderingSequenceMode" type="FormatOrderingSequenceModeType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Ordering mode for Formats of Associated Profiles (not of main Profile)</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TemplateTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="LoginType" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileNameModifyIndicator" type="YesNoType" use="optional" default="Y">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Indicates if profile name can be modified or not</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileStatusCode" type="StatusType" use="optional" default="AC"/>
+      <xs:attribute name="ProfilePurgeNoDays" type="NumericStringLength1to4" use="optional">
+         <xs:annotation>
+            <xs:documentation>Number of days after which the profile should be purged</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="UploadRSTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="UploadRSLoginType" minOccurs="0"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="UploadRSLoginType">
+      <xs:attribute name="LoginID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="SiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sitename for which the login ID will be associated ( Site can be a website , POS etc , or Site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SubSiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Subsite of the Sitename for which the login ID will be associated ( SubSite can be a website , POS etc , or subsite of the site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ExtractRSTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="ExtractRSLoginType" minOccurs="0"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ExtractRSLoginType">
+      <xs:attribute name="LoginID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="SiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sitename for which the login ID will be associated ( Site can be a website , POS etc , or Site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SubSiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Subsite of the Sitename for which the login ID will be associated ( SubSite can be a website , POS etc , or subsite of the site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DupChkTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Added by Sabre</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Login" type="DupChkLoginType" minOccurs="0"/>
+         <xs:element name="ProfileSubType" type="ProfileSubTypeType" minOccurs="0" maxOccurs="5"/>
+      </xs:sequence>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="required">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="ProfileTypeCode" type="ProfileTypeInfo" use="required"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DupChkLoginType">
+      <xs:attribute name="LoginID" type="StringLength1to120" use="required"/>
+      <xs:attribute name="SiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sitename for which the login ID will be associated ( Site can be a website , POS etc , or Site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SubSiteName" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Subsite of the Sitename for which the login ID will be associated ( SubSite can be a website , POS etc , or subsite of the site in GT that the profile is setup during customer implementation</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="MergeTPAIdentityType">
+      <xs:annotation>
+         <xs:documentation>Profile data for merge RQ/RS</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TPA_Identity" type="TPAIdentityType"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

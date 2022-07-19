@@ -1,0 +1,1771 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Szymon Lubieniecki (HP/ Sabre)-->
+<!--edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Piotr Wiacek (EDS/SABRE ACCT)-->
+<!--edited with XMLSpy v2011 rel. 3 (x64) (http://www.altova.com) by Olesksandr Leshchenko (HP)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maciej Kubicki (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Ramesh Pitani (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas">
+   <xs:include schemaLocation="Sabre_OTA_Common_Extensions.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_CommonTypes.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:complexType name="TPA_Extensions_Type">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">A placeholder in the schema to allow for additional elements and attributes to be included if required, per Trading Partner Agreement (TPA).</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SSR" type="SSRType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Special service requets for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OSI" type="OSIType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Traveler BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFilters" type="AssociatedFiltersType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Filters Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedTemplate" type="AssociatedTemplateType" minOccurs="0" maxOccurs="25">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Template Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedFormats" type="AssociatedFormatsType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Formats associated with a template</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TaxInfo" type="TaxInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Tax Information associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="TravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Travel Policy Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerValueScore" type="CustomerValueScoreType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Value Score Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="EnrollmentInfo" type="EnrollmentInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Information about Enrollments</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MergedProfiles" type="MergedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about Profiles that are merged into this profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="NumberOfAssocProfiles" type="NumberOfAssocProfilesType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Number of profiles associated to and from this profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedValues" type="CustomDefinedValuesType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Customer Defined Values can store any name/value pairs that can represent any customer data. There are no restrictions on the content of Name or Value. Name element can be stored without Value.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NumberOfAssocProfilesType">
+      <xs:annotation>
+         <xs:documentation>Number of profiles associated to and from this profile</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="Traveler" type="NumericStringLength1to6" use="optional"/>
+      <xs:attribute name="TravelAgent" type="NumericStringLength1to6" use="optional"/>
+      <xs:attribute name="TravelAgency" type="NumericStringLength1to6" use="optional"/>
+      <xs:attribute name="Corporation" type="NumericStringLength1to6" use="optional"/>
+      <xs:attribute name="Operational" type="NumericStringLength1to6" use="optional"/>
+      <xs:attribute name="GroupProfile" type="NumericStringLength1to6" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="PriorityRemarksType">
+      <xs:annotation>
+         <xs:documentation>Priority Lines for a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Text" type="StringLength1to1000" use="required"/>
+      <xs:attribute name="CategoryCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="RemarkType">
+      <xs:annotation>
+         <xs:documentation>Remarks for a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Text" type="StringLength1to1000" use="required"/>
+      <xs:attribute name="TypeCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="CategoryCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="VIT_LineType" type="VIT_StarLineType" use="optional"/>
+      <xs:attribute name="VIT_SecondaryQualifier" type="UpperCaseAlphaLength0to1" use="optional"/>
+      <xs:attribute name="VIT_OrderNmbr" type="NumericStringLength0to5" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="SSRType">
+      <xs:annotation>
+         <xs:documentation>Special Service Request Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ServiceTypeCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="SSRCode" type="StringLength1to4" use="optional"/>
+      <xs:attribute name="TypeCode" type="StringLength1to4" use="optional"/>
+      <xs:attribute name="Text" type="StringLength1to100" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="VIT_LineType" type="VIT_StarLineType" use="optional"/>
+      <xs:attribute name="VIT_SecondaryQualifier" type="UpperCaseAlphaLength0to1" use="optional"/>
+      <xs:attribute name="VIT_OrderNmbr" type="NumericStringLength0to5" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a SSR</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="OSIType">
+      <xs:annotation>
+         <xs:documentation>Other Service Info Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="ServiceTypeCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="TypeCode" type="StringLength1to4" use="required"/>
+      <xs:attribute name="Text" type="StringLength1to100" use="required"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="VIT_LineType" type="VIT_StarLineType" use="optional"/>
+      <xs:attribute name="VIT_SecondaryQualifier" type="UpperCaseAlphaLength0to1" use="optional"/>
+      <xs:attribute name="VIT_OrderNmbr" type="NumericStringLength0to5" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a OSI</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="CustomerReferenceInfoType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Customer Reference Info Data that includes info like DK Number, 3rd party system reference data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Type" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="BranchID" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Branch Indicator that is associated to ReferenceID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ReferenceID" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Customer Reference Info</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="PNRMoveInfoType">
+      <xs:choice>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+      <xs:attribute name="AssocProfileFilterID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate FilterID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileFilterName" type="StringLength1to120" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate Profile Filter Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociatedProfilesType">
+      <xs:annotation>
+         <xs:documentation>Profiles Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PNRMoveInfo" type="PNRMoveInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** PNR Move information assocaited with an associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AssocUniqueID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate profileID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileTypeCode" type="ProfileTypeInfo" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated Profile Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="AssocProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileRelationTypeCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates Type of relationship between profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileRelationStatusCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates Status of relationship between</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CreditBankIndicator" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates If Credit Bank is present</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocFiltersInd" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates If Profile has assiciated Filters</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociatedFiltersType">
+      <xs:annotation>
+         <xs:documentation>Filters Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="FilterID" type="NumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the template in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="FilterName" type="StringLength1to120" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the filter</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="CreateDateTime" type="xs:dateTime" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="UpdateDateTime" type="xs:dateTime" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED ***</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="AssociatedTemplateType">
+      <xs:annotation>
+         <xs:documentation>Template Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TemplateID" type="NumericStringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** ID of the template in the database</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateName" type="StringLength1to120" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Name of the Template</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="BusinessSystemIdentityInfoType">
+      <xs:annotation>
+         <xs:documentation>Agent BackOffice information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="SystemName" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation>other System identity system name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IdentifierType" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Identifier type. Can be used if there are multiple identifieres defined.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ID" type="StringLength1to200" use="required">
+         <xs:annotation>
+            <xs:documentation>Other System Identity ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** Deprecated *** Description</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a BusinessSystemIdentityInfo</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TaxInfoType">
+      <xs:annotation>
+         <xs:documentation>Tax Information associated to a profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="TaxID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>Tax ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TaxTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Tax Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <!--xs:complexType name="DiscountsType">
+		<xs:sequence>
+			<xs:element name="AirDiscounts" type="DiscountsInfoType" minOccurs="0" maxOccurs="200">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Air Discount Associated to a  profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HotelDiscounts" type="DiscountsInfoType" minOccurs="0" maxOccurs="200">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Hotel Discount Associated to a  profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VehicleDiscounts" type="DiscountsInfoType" minOccurs="0" maxOccurs="200">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">*** SABRE ADDED *** Vehicle Discount Associated to a  profile</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType-->
+   <xs:complexType name="DiscountsType">
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="VendorTypeCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount vendor type like Air, hotel etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TypeCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Type like is it Discount or Subscription Card, Travel Award, Contract</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ID" type="StringLength1to30" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Number or HIC code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Description</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EffectiveDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Effective Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ExpiryDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Expiry Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Percentage" type="NumericStringLength1to5" use="optional"/>
+      <xs:attribute name="Rate" type="NumericStringLength1to20" use="optional"/>
+      <xs:attribute name="ExpireTime" type="xs:time"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Discounts</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="StatusCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Status of the discount</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="GDSType">
+      <xs:annotation>
+         <xs:documentation>Gds data associated with an Agency</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="GDSCode" type="StringLength2" use="required">
+         <xs:annotation>
+            <xs:documentation>"Code Representing the Global Distribution System that an AGENCY / SUB-AGENCY / AGENT works with to perform reservation activity e.g. 1S Sabre-Holdings 1B Abacus 1A Amadeus"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="HostPartitionCd" type="NumericStringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation>"Numeric code corresponding to the Host partition in the GDS. e.g. 001 002 "</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GDS_ProfileID" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation>"A unique identifier that is associated with a specific GDS to label specific profiles: CORPORATION CUSTOMER AGENCY e.g. for Sabre, this represents the STAR id for a corporate name. e.g. IBM"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PrimaryMultiHostID" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>"The PRIME HOST CREATOR COMPUTER RESERVATION SYSTEM (CRS) CODE uniquely identifies suppliers or vendors within the reservation industry. e.g. 1B 1F"</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="TravelPolicyType">
+      <xs:annotation>
+         <xs:documentation>Travel Policy Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="SabreTravelPolicyEngine" type="SabreTravelPolicyEngineType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** DEPRECATED *** This element will be removed during next major schema release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreCorporateTravelPolicy" type="SabreCorporateTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre Old Corporate Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="SabreTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre New Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="BrandingType">
+      <xs:sequence>
+         <xs:element name="Address" type="AddressType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Branding Address Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Telephone" type="TelephoneType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Branding Telephone Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">** SABRE ADDED *** Branding Email Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="BrandingDisplayName" type="StringLength1to200" use="required">
+         <xs:annotation>
+            <xs:documentation>Represents Agency Brand Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="BrandingUsageTypeCd" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>represents Agency Brand type used for distinguishing how brand will be used</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="BrandingURL" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation>Represents AGENCY and sub-AGENCY URL displays to customers.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="BrandingURLLogoLocationText" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation>Represents AGENCY and sub-AGENCY URL logo location displays to customers.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="BrandingMarketingMessageDesc" type="StringLength1to64" use="optional">
+         <xs:annotation>
+            <xs:documentation>Branding Marketing Message Description</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LanguageIDCode" type="StringLength1to5" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="CommissionsType">
+      <xs:annotation>
+         <xs:documentation>Commissions Type</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CommissionMeasureTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Amount</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CommissionValue" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Amount</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ServiceTypeCode" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Service Type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TripTypeCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Trip Type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SupplierCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Commission Supplier Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CommissionDescription" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Description</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EffectiveDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Effective Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DiscontinueDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Commission Discontinue Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information Text</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoOriginCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Origin Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoDestinationCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Des type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GeoRegionCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <!--xs:attribute name="CommissionGroup" type="StringLength1to20" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">***SABRE ADDED*** Commission Group Information </xs:documentation>
+			</xs:annotation>
+		</xs:attribute-->
+      <!--xs:attribute name="CommissionTypeCode" type="StringLength1to10" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="en">***SABRE ADDED*** Commission Type Code</xs:documentation>
+			</xs:annotation>
+		</xs:attribute-->
+   </xs:complexType>
+   <xs:complexType name="CustomProfileRolesType">
+      <xs:annotation>
+         <xs:documentation>Profile Roles</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CustomRoleName" type="StringLength1to30" use="required">
+         <xs:annotation>
+            <xs:documentation>Name of the role</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="STARDataType">
+      <xs:annotation>
+         <xs:documentation>Migrated STAR Data</xs:documentation>
+      </xs:annotation>
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="STARName" type="StringLength1to120" use="required"/>
+            <xs:attribute name="OriginatingPCC" type="StringLength1to20" use="optional"/>
+            <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+            <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+               <xs:annotation>
+                  <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="SabreSecurityEntityAttributeType">
+      <xs:annotation>
+         <xs:documentation>SabreSecurityEntityAttribute Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AttributeName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation>Name of the role</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="IncentivesType">
+      <xs:annotation>
+         <xs:documentation>Incentives Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="SupplierCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Vendor or Chain Code.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SupplierServiceTypeCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Type of the Vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="SupplierIncentiveID" type="StringLength1to100" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Incentive ID of the Supplier</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IncentiveValue" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Incentive value of the Supplier like 25 upgrade coupons per QTR</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="InformationText" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information Text</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EffectiveDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Effective date when the Incentive goes active</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ExpiryDate" type="xs:date" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Expiry date when the Incentive goes active</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="QueueAssignmentsType">
+      <xs:annotation>
+         <xs:documentation>Queue Assignment Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DataSource" type="DataSourceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Deprecated, will be removed in 7.0 release</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="QueueNo" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Queue Number</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Domain ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PrefatoryInstruction" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Prefatory Instruction Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="GDSCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** GDS Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="QueueDesc" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">***SABRE ADDED*** Queue Description (Purpose)</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SabreTravelPolicyEngineType">
+      <xs:annotation>
+         <xs:documentation>Sabre Travel Policy Policies Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="PolicyID" type="StringLength9to18" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">TPE Policy ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="PolicyName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">TPE Policy Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SabreCorporateTravelPolicyType">
+      <xs:annotation>
+         <xs:documentation>Sabre Corporate Travel Policy Policies Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="CTPName" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">CTP Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSAssociatedProfilesType">
+      <xs:annotation>
+         <xs:documentation>Profiles Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="AssocUniqueID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate profileID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileTypeCode" type="ProfileTypeInfo" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated Profile Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="AssocProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocFiltersInd" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates If Profile has assiciated Filters</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CreditBankIndicator" type="YesNoType" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates If Credit Bank is present</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileRelationTypeCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates Type of relationship between profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ProfileRelationStatusCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation>Indicates Status of relationship between</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSRemarkType">
+      <xs:attribute name="Text" type="StringLength1to1000" use="required"/>
+      <xs:attribute name="TypeCode" type="StringLength1to2" use="optional"/>
+      <xs:attribute name="CategoryCode" type="StringLength1to3" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="SearchRSCustomerReferenceInfoType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Customer Reference Info Data that includes info like DK Number, 3rd party system reference data</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TripTypeCode" type="StringLength2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Type" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="BranchID" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Branch Indicator that is associated to ReferenceID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ReferenceID" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a Customer Reference Info</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="SearchRSBusinessSystemIdentityInfoType">
+      <xs:annotation>
+         <xs:documentation>Agent BackOffice information</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="SystemName" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation>other System identity system name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ID" type="StringLength1to200" use="required">
+         <xs:annotation>
+            <xs:documentation>Other System Identity ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="StringLength1to200" use="optional">
+         <xs:annotation>
+            <xs:documentation>*** Deprecated *** Description</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="InformationText" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Information about a BusinessSystemIdentityInfo</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="IdentifierType" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Identifier type. Can be used if there are multiple identifieres defined.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ProfileAccessInfoType">
+      <xs:annotation>
+         <xs:documentation>Read Only Audit/Historical Data</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="CreateAccessInfo" type="FullAccessInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Profile Create Info Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LastUpdateAccessInfo" type="FullAccessInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Profile Update Info Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="ReadAccessInfo" type="FullAccessInfoType" minOccurs="0" maxOccurs="5">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Profile Access Information Darta</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LastDeleteAccessInfo" type="FullAccessInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Profile Delete Info Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="LastRestoreAccessInfo" type="FullAccessInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Profile Restore Info Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FullAccessInfoType">
+      <xs:attribute name="EPRDomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This attribute will store information about pseudo-city or a partition or ICE group associated to EPR.This will be the domain, suffix, pseudo-city or logical entity. e.g : B1Z0, F9 etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DutyCd" type="StringLength1to10" use="optional"/>
+      <xs:attribute name="UserID" type="StringLength1to32" use="required">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This will be either EPR ID or ICE UPR ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LDAPDomain" type="StringLength1to32" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This is AgSS partition, company name or business unit name in the LDAP. e.g : Sabre, AA, F9, HA etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LNIATA" type="StringLength1to32" use="optional"/>
+      <xs:attribute name="AgentSine" type="StringLength1to64" use="optional">
+         <xs:annotation>
+            <xs:documentation>** SABRE ADDED ** This is the Agent Sine information</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentGivenName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent First Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentMiddleName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent Middle Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AgentSurName" type="StringLength1to100" use="optional">
+         <xs:annotation>
+            <xs:documentation>Agent Last Name</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Timestamp" type="xs:dateTime" use="required">
+         <xs:annotation>
+            <xs:documentation>Date/time of event</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="CustomerValueScoreType">
+      <xs:sequence>
+         <xs:element name="ValueScoreUpdateInfo" type="ValueScoreUpdateInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>** SABRE ADDED ** Value Score Update/Access Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Score" type="NumericStringLength1to9" use="optional"/>
+      <xs:attribute name="EffectiveDate" type="xs:date" use="required"/>
+      <xs:attribute name="DiscontinueDate" type="xs:date" use="required"/>
+      <xs:attribute name="ScoreTypeCode" type="StringLength1to3" use="required"/>
+      <xs:attribute name="Comment" type="StringLength1to500" use="optional"/>
+      <xs:attribute name="LoadDateTime" type="xs:dateTime" use="optional"/>
+      <xs:attribute name="VendorTypeCode" type="StringLength1to2" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount vendor type like Air, hotel etc</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="VendorCode" type="StringLength1to30" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CustomerUserID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">External system, comunity or airline portal user identifier</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="CustomerDomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">External system, comunity or airline portal</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="ValueScoreUpdateInfoType">
+      <xs:attribute name="AccessUserID" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="optional">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="LNIATA" type="StringLength1to32" use="optional"/>
+      <xs:attribute name="Group" type="StringLength1to20" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="FilterAssociatedProfilesType">
+      <xs:annotation>
+         <xs:documentation>Profiles Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence minOccurs="0">
+         <xs:element name="PNRMoveInfo" type="PNRMoveInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** PNR Move information assocaited with an associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AssocUniqueID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate profileID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileTypeCode" type="ProfileTypeInfo" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated Profile Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="AssocProfileDescription" type="StringLength1to255" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Description of a profile if needed</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="StandardProfileRolesType">
+      <xs:annotation>
+         <xs:documentation>Standard Profile Roles</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="StandardRoleName" type="StringLength1to30" use="required">
+         <xs:annotation>
+            <xs:documentation>Name of the role</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="RolesType">
+      <xs:sequence>
+         <xs:element name="CustomProfileRoles" type="CustomProfileRolesType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Custom Roles Associated to a profile created by User Roles application</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="StandardProfileRoles" type="StandardProfileRolesType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Standard Roles Associated to a profile based on predefined list like SiteRole, AdminRole etc</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNR_TPA_Extensions_Type">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">A placeholder in the schema to allow for additional elements and attributes to be included if required, per Trading Partner Agreement (TPA).</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SSR" type="SSRType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Special service requets for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OSI" type="OSIType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Traveler BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="AssociatedProfiles" type="ProfileToPNR_AssociatedProfilesType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** (For Profiles Only --Templates/Filters should not use this Subject area) Associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TaxInfo" type="TaxInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Tax Information associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ProfileToPNR_AssociatedProfilesType">
+      <xs:annotation>
+         <xs:documentation>Profiles Associated to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PNRMoveInfo" type="PNRMoveInfoType">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** PNR Move information assocaited with an associated profiles</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TransactionalData" type="TransactionalDataType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Transactional Data only , This data will not be stored with a profile, this will be stored only in templates if needed and should be used with Templates only</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="AssocUniqueID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associate profileID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileTypeCode" type="ProfileTypeInfo" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated Profile Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="AssocProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientContextCode" type="StringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation>CLientContextCode is the calling application code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="TemplateInheritInd" type="YesNoType" use="optional" default="N">
+         <xs:annotation>
+            <xs:documentation>Indicates if this relation is inherited from a Template, Should be used only under Profile and not under Template and Filter.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterCustomerReferenceInfoType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Customer Reference Info Data that includes info like DK Number, 3rd party system reference data</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="TripTypeCode" type="StringLength1to2" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Trip type Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Type" type="StringLength1to30" use="optional"/>
+      <xs:attribute name="BranchID" type="StringLength1to10" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Branch Indicator that is associated to ReferenceID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ReferenceID" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="FilterTravelPolicyType">
+      <xs:annotation>
+         <xs:documentation>Filter Travel Policy Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="SabreTravelPolicy" type="FilterSabreTravelPolicyType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterSabreTravelPolicyType">
+      <xs:annotation>
+         <xs:documentation>Filter Travel Policy Information</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Policy" type="FilterSTPPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Policy ID information for SabreTravelPolicy element</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Preference" type="FilterSTPPreferenceType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Preference ID information for SabreTravelPolicy element</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FilterSTPPreferenceType">
+      <xs:annotation>
+         <xs:documentation>Filter Sabre Travel Policy Preference Information</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ID" type="AlphaNumericStringLength1to32" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">STP Preference ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterSTPPolicyType">
+      <xs:annotation>
+         <xs:documentation>Filter Sabre Travel Policy Information</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="ID" type="AlphaNumericStringLength1to32" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">STP Policy ID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="FilterTPA_Extensions_Type">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">A placeholder in the schema to allow for additional elements and attributes to be included if required, per Trading Partner Agreement (TPA).</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Remark" type="FilterRemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="FilterCustomerReferenceInfoType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="FilterDiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TravelPolicy" type="FilterTravelPolicyType" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TemplateTPA_Extensions_Type">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">A placeholder in the schema to allow for additional elements and attributes to be included if required, per Trading Partner Agreement (TPA).</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="PriorityRemarks" type="PriorityRemarksType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Priority Lines of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Remark" type="RemarkType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Remarks of a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SSR" type="SSRType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Special service requets for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="OSI" type="OSIType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Other Service Info for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerReferenceInfo" type="CustomerReferenceInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Third party system Reference IDs for a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="BusinessSystemIdentityInfo" type="BusinessSystemIdentityInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Traveler BackOffice System Information data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Discounts" type="DiscountsType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomDefinedData" type="CustomDefinedDataType" minOccurs="0" maxOccurs="500">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Defined Data</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="TaxInfo" type="TaxInfoType" minOccurs="0" maxOccurs="200">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Tax Information associated to a profile</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="STARData" type="STARDataType" minOccurs="0" maxOccurs="1000">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** STAR Data that got migrated to PPP *** Please Note that this is Temporary only and will not be supported in PPP after 2012</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="CustomerValueScore" type="CustomerValueScoreType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Customer Value Score Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreCorporateTravelPolicy" type="SabreCorporateTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre Old Corporate Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="SabreTravelPolicy" type="SabreTravelPolicyType" minOccurs="0">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Sabre New Travel Policy Policies Information</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="EnrollmentInfoType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Enorllment Information</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="EnrollmentChannel" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="EnrollmentCd" type="StringLength1to20" use="optional"/>
+      <xs:attribute name="EnrolledStartDateTime" type="xs:dateTime" use="optional"/>
+      <xs:attribute name="EnrolledExpireDateTime" type="xs:dateTime" use="optional"/>
+      <xs:attribute name="TimeZoneCode" type="NumericStringLength1to16" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Identifes the TimeZone</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EnrolledStatus" type="xs:boolean" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="MergedProfilesType">
+      <xs:annotation>
+         <xs:documentation>Profiles Merged to a Profile</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="MergedProfileUniqueID" type="StringLength1to120" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Merged profileID</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="MergedProfileTypeCode" type="ProfileTypeInfo" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Associated Profile Type</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required"/>
+      <xs:attribute name="MergeComment" type="StringLength1to200" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="FilterDiscountsType">
+      <xs:attribute name="VendorCode" type="StringLength1to30" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount vendor</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ID" type="StringLength1to30" use="required">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** Discount Number or HIC code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DisplaySequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Defines sorting order for collection elements, numbers have to be unique within collection</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">Sequence Number with 1 being primary</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="BusinessTravelerSettingType">
+      <xs:attribute name="DefaultBusTvlTypeCode" type="StringLength1to5" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** DefaultBusTvlTypeCode</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DefaultBusTvlStatusCode" type="StatusType" use="optional">
+         <xs:annotation>
+            <xs:documentation xml:lang="en">*** SABRE ADDED *** DefaultBusTvlStatusCode</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+</xs:schema>

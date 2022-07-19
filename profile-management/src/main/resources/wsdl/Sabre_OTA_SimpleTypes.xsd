@@ -1,0 +1,949 @@
+<!--edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by Jacek Majchrzak (HP/ Sabre)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by SABRE HOLDINGS (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sabre.com/eps/schemas">
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:simpleType name="AlphaNumericStringLength1to4">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Alpha-Numeric Strings, length 1 to 4</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,4}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to8">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Alpha-Numeric Strings, length 1 to 8</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,8}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to19">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 19</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,19}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to2WithoutAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 2</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,2}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to5WithoutAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 5</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,5}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to8WithoutAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 8</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,8}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to10WithoutAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 10</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,10}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to20WithoutAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 20</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z]{1,20}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to20OrAsterisk">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 20</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\*|[0-9a-zA-Z]{1,20}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to20">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 20</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z*]{1,20}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AlphaNumericStringLength1to32">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used forAlpha-Numeric Strings, length 1 to 32</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9a-zA-Z*]{1,32}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="MMYYYYDate">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Month and year information.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="(0[1-9]|1[0-2])[0-9][0-9][0-9][0-9]"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="Numeric1to250">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric values, from 1 to 250 inclusive</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:integer">
+         <xs:minInclusive value="1"/>
+         <xs:maxInclusive value="250"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="Numeric0to365">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric values, from 0 to 365 inclusive.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:integer">
+         <xs:minInclusive value="0"/>
+         <xs:maxInclusive value="365"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="Numeric1to999">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric values, from 1 to 999 inclusive.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:integer">
+         <xs:minInclusive value="1"/>
+         <xs:maxInclusive value="999"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to16">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 16.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,16}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to6">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 6.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,6}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to20">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 20.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,20}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to100">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 100.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,100}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to3">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, minimum length 1, maximum length 3.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,3}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to2">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, minimum length 1, maximum length 2.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,2}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to4">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, minimum length 1, maximum length 4.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,4}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to5">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 5</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,5}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to18">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 18.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,18}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="SignedNumericStringLength1to18">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 18.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[+|\-]?[0-9]{1,18}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to9">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 9.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,9}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to10">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 10.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,10}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength1to15">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 1 to 15.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,15}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength0to32">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 0 to 32</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="0"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to20">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 20</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="20"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to25">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 25</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="25"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to256">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 256</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="256"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to120">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 120</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="120"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to64">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 64</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="64"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to250">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 250</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="250"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to30">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 30</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="30"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to40">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 40</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="40"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to62">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 62</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="62"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to3">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 3</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="3"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="1"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to16">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 16</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="16"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to10">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 10</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="10"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to2">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 2</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to4">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 4</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="4"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength2to5">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 2 to 5</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="2"/>
+         <xs:maxLength value="5"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to5">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 5</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="5"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to6">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 6</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="6"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to18">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 18</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="18"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to100">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 100</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to255">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 255</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="255"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to500">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 500</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="500"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to1000">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 1000</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="1000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to4000">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 4000</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="4000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to200">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 200</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="200"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to400">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 200</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="400"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to32">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 32</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="32"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to38">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 38</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="38"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to60">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 60</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="60"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength0to100">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 0 to 100</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="0"/>
+         <xs:maxLength value="100"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to50">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 50</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="50"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength2">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Strings, length exactly 2</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="2"/>
+         <xs:maxLength value="2"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength3">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Strings, length exactly 3</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="3"/>
+         <xs:maxLength value="3"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength10">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Strings, length exactly 10</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="10"/>
+         <xs:maxLength value="10"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to8">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 8</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="8"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength1to15">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 1 to 15</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="1"/>
+         <xs:maxLength value="15"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength9to18">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Character Strings, length 9 to 18</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="9"/>
+         <xs:maxLength value="18"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="MilitaryTimeAsString">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for military time asstring 13:00.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{1,2}:[0-9]{2}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="StringLength4">
+      <xs:annotation>
+         <xs:documentation>Used for character strings length 4</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:minLength value="4"/>
+         <xs:maxLength value="4"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="DomainIdSimpleType">
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\*|[0-9a-zA-Z]{1,20}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="YesNoType">
+      <xs:annotation>
+         <xs:documentation>Sabre extended to add Unknown, Y-Yes, N-No, U-Unknown</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="Y"/>
+         <xs:enumeration value="N"/>
+         <xs:enumeration value="U"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="TransactionalDataType">
+      <xs:sequence>
+         <xs:element name="TemplateGroupName" type="TemplateGroupNameType" minOccurs="0" maxOccurs="50">
+            <xs:annotation>
+               <xs:documentation>*** SABRE ADDED *** Template Group NameData</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="LanguageId" type="StringLength1to10" use="optional"/>
+      <xs:attribute name="TemplateSubjectAreaCount" type="NumericStringLength1to3" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="TemplateGroupNameType">
+      <xs:annotation>
+         <xs:documentation>Template Group Name info</xs:documentation>
+      </xs:annotation>
+      <xs:simpleContent>
+         <xs:extension base="StringLength1to255">
+            <xs:attribute name="OrderSequenceNo" type="NumericStringLength1to3" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:simpleType name="StatusType">
+      <xs:annotation>
+         <xs:documentation>Status of the Profile AC-Active, DL- Mark for Delete, IN-Inactive , SP-Schedule to Purge, NA-Not Activated, MP-Migration in Progress, MG-merged profile, DM-Domain is being Moved</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="AC"/>
+         <xs:enumeration value="DL"/>
+         <xs:enumeration value="IN"/>
+         <xs:enumeration value="DE"/>
+         <xs:enumeration value="NA"/>
+         <xs:enumeration value="MP"/>
+         <xs:enumeration value="MG"/>
+         <xs:enumeration value="DM"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="ProfileTypeInfo">
+      <xs:annotation>
+         <xs:documentation>Type of the Profile TVL-Traveler, CRP-Corporation, AGT- Agent, AGY-Agency, OPX-Operational Profiles, ALC-Alliance Profiles, GRP - Group Profile</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="TVL"/>
+         <xs:enumeration value="AGT"/>
+         <xs:enumeration value="AGY"/>
+         <xs:enumeration value="CRP"/>
+         <xs:enumeration value="OPX"/>
+         <xs:enumeration value="ALC"/>
+         <xs:enumeration value="GRP"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="SearchProfileTypeInfo">
+      <xs:annotation>
+         <xs:documentation>Type of the Profile TVL-Traveler, CRP-Corporation, AGT- Agent, AGY-Agency, Group Profile, ALL - ALL</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="TVL"/>
+         <xs:enumeration value="AGT"/>
+         <xs:enumeration value="AGY"/>
+         <xs:enumeration value="CRP"/>
+         <xs:enumeration value="OPX"/>
+         <xs:enumeration value="GRP"/>
+         <xs:enumeration value="ALL"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="SearchOperationTypeInfo">
+      <xs:annotation>
+         <xs:documentation>Search Operation And, OR</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="AND"/>
+         <xs:enumeration value="OR"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="ConsentValueType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifes an action to take place.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Y"/>
+         <xs:enumeration value="N"/>
+         <xs:enumeration value="U"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <!--xs:simpleType name="CustRemarkType">
+		<xs:annotation>
+			<xs:documentation>Enumeration of customer profile remark types</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="S"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="A"/>
+			<xs:enumeration value="O"/>
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="R"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="OSI"/>
+			<xs:enumeration value="SSR"/>
+			<xs:enumeration value="TELEREMARK"/>
+			<xs:enumeration value="PNRREMARK"/>
+			<xs:enumeration value="TICKETINGFIELD"/>
+			<xs:enumeration value="TIMELIMITFIELD"/>
+			<xs:enumeration value="RECEIVEDFROMFIELD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DutyCodeType">
+		<xs:annotation>
+			<xs:documentation>TPF Duty Codes</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9/*#@\-]{1}"/>
+		</xs:restriction>
+	</xs:simpleType-->
+   <xs:complexType name="SuccessType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Standard way to indicate successful processing of an OTA message. Returning an empty element of this type indicates success.</xs:documentation>
+      </xs:annotation>
+   </xs:complexType>
+   <xs:complexType name="WarningsType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Standard way to indicate successful processing of an OTA message, but one in which warnings are generated</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="WarningMessage" type="WarningMessageType" maxOccurs="100"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="WarningMessageType">
+      <xs:simpleContent>
+         <xs:extension base="StringLength1to200">
+            <xs:attribute name="WarningCode" type="StringLength1to5" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="ErrorsType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">A collection of errors that occurred during the processing of a message.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="ErrorMessage" type="ErrorMessageType" maxOccurs="100"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ErrorMessageType">
+      <xs:simpleContent>
+         <xs:extension base="StringLength1to400">
+            <xs:attribute name="ErrorCode" type="StringLength1to5" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRWarningType">
+      <xs:attribute name="CommandRef" type="xs:string" use="optional"/>
+      <xs:attribute name="ProfileSeqNmbr" type="xs:integer" use="optional"/>
+      <xs:attribute name="ElementId" type="xs:string" use="optional"/>
+      <xs:attribute name="WarningMessage" type="xs:string" use="optional"/>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRWarningsType">
+      <xs:sequence>
+         <xs:element name="Warning" type="Profile2PNRWarningType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRErrorType">
+      <xs:attribute name="CommandRef" type="xs:string" use="optional"/>
+      <xs:attribute name="ProfileSeqNmbr" type="xs:integer" use="optional"/>
+      <xs:attribute name="ErrorCode" type="xs:string" use="optional"/>
+      <xs:attribute name="Severity" type="xs:string" use="optional"/>
+      <xs:attribute name="ErrorMessage" type="xs:string" use="optional"/>
+      <xs:attribute name="ElementId" type="xs:string" use="optional"/>
+      <xs:attribute name="UniqueID" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+      <xs:attribute name="MainProfileFilterID" type="StringLength1to120" use="optional">
+         <xs:annotation>
+            <xs:documentation>ID of the filter used to move the main profile</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRErrorsType">
+      <xs:sequence>
+         <xs:element name="Error" type="Profile2PNRErrorType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRTPA_ExtensionsType">
+      <xs:sequence>
+         <xs:element name="HostCommand" type="Profile2PNRHostCommandType" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRHostCommandType">
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="CommandId" type="xs:ID" use="optional"/>
+            <xs:attribute name="ElementId" type="xs:string" use="optional"/>
+            <xs:attribute name="ProfileSeqNmbr" type="xs:integer" use="optional"/>
+            <xs:attribute name="UniqueID" type="StringLength1to120" use="optional"/>
+            <xs:attribute name="ProfileName" type="StringLength1to120" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="Profile2PNRResponseMessageType">
+      <xs:sequence>
+         <xs:element name="Success" type="xs:string" minOccurs="0"/>
+         <xs:element name="Warnings" type="Profile2PNRWarningsType" minOccurs="0"/>
+         <xs:element name="Errors" type="Profile2PNRErrorsType" minOccurs="0"/>
+         <xs:element name="TPA_Extensions" type="Profile2PNRTPA_ExtensionsType" minOccurs="0"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ResponseMessageType">
+      <xs:choice>
+         <xs:element name="Success" type="SuccessType"/>
+         <xs:element name="Warnings" type="WarningsType"/>
+         <xs:element name="Errors" type="ErrorsType"/>
+      </xs:choice>
+   </xs:complexType>
+   <xs:simpleType name="FieldCodeDataType">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Identifes an action to take place.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="String"/>
+         <xs:enumeration value="Integer"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NumericStringLength0to5">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Used for Numeric Strings, length 0 to 5</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0-9]{0,5}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="UpperCaseAlphaLength0to1">
+      <xs:annotation>
+         <xs:documentation>Sabre Added for VIT STAR secondary qualifier</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[A-Z]{0,1}"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="VIT_StarLineType">
+      <xs:annotation>
+         <xs:documentation>Sabre Added Enumeration for VIT STAR line types</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value=""/>
+         <xs:enumeration value="S"/>
+         <xs:enumeration value="P"/>
+         <xs:enumeration value="A"/>
+         <xs:enumeration value="O"/>
+         <xs:enumeration value="N"/>
+         <xs:enumeration value="R"/>
+         <xs:enumeration value="F"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="DictionaryType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Defines the Dictionary with Control Codes</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="DictionaryIdentity" type="DictionaryIdentityType"/>
+         <xs:element name="DictionaryEntry" type="DictionaryEntryType" maxOccurs="250"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DictionaryEntryType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Defines the Entry in the Dictionary</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="Code" type="StringLength1to4" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Defines the Control Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Description" type="StringLength1to100">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Defines the Description of Control Code</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="EffectiveDate" type="xs:date">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Defines Effective Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="DiscontinueDate" type="xs:date">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Defines Discontinue Date</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:complexType name="DictionaryIdentityType">
+      <xs:annotation>
+         <xs:documentation>*** SABRE ADDED *** Defines the Dictionary Identity with Name, DomainID and ClientCode</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="Name" use="required">
+         <xs:annotation>
+            <xs:documentation>*** SABRE ADDED *** Defines the Name of the Dictionary</xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:NMTOKEN">
+               <xs:enumeration value="AirlineSeatPref"/>
+               <xs:enumeration value="HotelRoomTypePref"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="DomainID" type="StringLength1to20" use="required">
+         <xs:annotation>
+            <xs:documentation>DomainID will be PCC for Agency Profiles, SVT for SVT/Inform Profiles</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ClientCode" type="StringLength1to10" use="required">
+         <xs:annotation>
+            <xs:documentation>ClientCode indicated the code that is associated with the profile that is shared between calling applications</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+   <xs:simpleType name="FormatOrderingSequenceModeType">
+      <xs:annotation>
+         <xs:documentation>Ordering mode for Associated Formats: F - by Filter, PT - by Profile and Template</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="F"/>
+         <xs:enumeration value="PT"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="RestrictionType">
+      <xs:annotation>
+         <xs:documentation>Sabre extended to add RQ - Required, OP - Optional or NA - Not Available restriction types</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="RQ"/>
+         <xs:enumeration value="OP"/>
+         <xs:enumeration value="NA"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="AccessibilityType">
+      <xs:annotation>
+         <xs:documentation>Access mode for Profile elements described in Metadata: RW - Readable/Writeable, RO - Read Only, NA - Not Available</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="RW"/>
+         <xs:enumeration value="RO"/>
+         <xs:enumeration value="NA"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

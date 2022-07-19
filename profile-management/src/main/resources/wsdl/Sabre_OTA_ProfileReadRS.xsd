@@ -1,0 +1,102 @@
+<!--edited with XMLSpy v2011 rel. 3 (x64) (http://www.altova.com) by Maciej Kubicki (HP/SABRE)-->
+<!--edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maciej Kubicki (SABRE)-->
+<!--edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Adarsh Gosu (SABRE HOLDINGS)-->
+<xs:schema targetNamespace="http://www.sabre.com/eps/schemas" elementFormDefault="qualified" version="${version}" id="SABRE2007_OTA2007B" xmlns="http://www.sabre.com/eps/schemas" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:include schemaLocation="Sabre_OTA_Profile.xsd"/>
+   <xs:include schemaLocation="Sabre_OTA_Common_Extensions.xsd"/>
+   <xs:annotation>
+      <xs:documentation xml:lang="en">All Schema files in the OTA specification are made available according to the terms defined by the OTA License Agreement at http://www.opentravel.org/ota_downloads_form.cfm</xs:documentation>
+   </xs:annotation>
+   <xs:element name="Sabre_OTA_ProfileReadRS">
+      <xs:annotation>
+         <xs:documentation xml:lang="en">Returns a single or multiple customer profile(s) in response to a ReadRQ request of Type=Profile.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="ResponseMessage" type="ResponseMessageType">
+               <xs:annotation>
+                  <xs:documentation>*** SABRE ADDED *** Response Messages</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:choice minOccurs="0">
+               <xs:element name="Message" type="StringLength1to64">
+                  <xs:annotation>
+                     <xs:documentation>*** SABRE ADDED *** Message</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Profile" type="ProfileType">
+                  <xs:annotation>
+                     <xs:documentation>*** OTA Based *** If name search finds more than one profile choose VITProfiles</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Template" type="TemplateType">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about structure of a template</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Filter" type="FilterType">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about structure of a Filter</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Format" type="FormatType">
+                  <xs:annotation>
+                     <xs:documentation xml:lang="en">*** SABRE ADDED *** Information about structure of a Format</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Profiles" type="ReadRSProfilesType">
+                  <xs:annotation>
+                     <xs:documentation>*** OTA Based *** If name search finds more than one profile choose VITProfiles</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Association" type="AssociationType">
+                  <xs:annotation>
+                     <xs:documentation>*** SABRE ADDED *** Information about Association</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Metadata" type="MetadataType">
+                  <xs:annotation>
+                     <xs:documentation>*** SABRE ADDED *** Information about structure of a Metadata</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="Validator" type="ValidatorType">
+                  <xs:annotation>
+                     <xs:documentation>*** SABRE ADDED *** Information about structure of a Validator</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:choice>
+            <xs:element name="AuditInfo" type="ProfileAccessInfoType" minOccurs="0">
+               <xs:annotation>
+                  <xs:documentation>Profile access audit information</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="TimeStamp" type="xs:dateTime" use="optional">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">Indicates the creation date and time of the message in UTC using the following format specified by ISO 8601; YYYY-MM-DDThh:mm:ssZ with time values using the 24 hour clock (e.g. 20 November 2003, 1:59:38 pm UTC becomes 2003-11-20T13:59:38Z).</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="Target" use="optional" default="Production">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">Used to indicate whether the request is for the Test or Production system.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+               <xs:restriction base="xs:NMTOKEN">
+                  <xs:enumeration value="Test"/>
+                  <xs:enumeration value="Production"/>
+               </xs:restriction>
+            </xs:simpleType>
+         </xs:attribute>
+         <xs:attribute name="Version" type="StringLength1to15" use="required">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">For all OTA versioned messages, the version of the message is indicated by a decimal value.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+         <xs:attribute name="RequestTrackingID" type="StringLength1to100" use="optional">
+            <xs:annotation>
+               <xs:documentation xml:lang="en">RequestTrackingID is indicated by string value</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
